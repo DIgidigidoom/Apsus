@@ -1,17 +1,39 @@
-.mail-list-container{
-    border-top:1px solid var(--sepertor-color) ;
+.mail-list-container {
+    border-top: 1px solid var(--sepertor-color);
     padding-inline-start: 0;
 }
 
-.mail-list-container li{
+.mail-list-container li {
     display: flex;
-    justify-content: space-between;
-    border-bottom:1px solid var(--sepertor-color) ;
-    padding-inline-start: 40px;
+    border-bottom: 2px solid var(--sepertor-color);
+    padding-inline-start: 16px;
     cursor: pointer;
     align-items: center;
+    background-color: var(--read-bg-color);
 }
 
-.mail-list-container li:hover{
-   transform: scale(1.01);
+.mail-list-container li:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+.mail-left-buttons {
+    display: flex;
+    margin-inline-end: 10px;
+
+}
+
+.mail-left-buttons button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.mail-right-btns button {
+    z-index: 2;
+}
+
+.not-read{
+    font-weight: bolder;
+    background-color: white !important;
+  }

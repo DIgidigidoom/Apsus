@@ -1,4 +1,19 @@
 .mail-preview-container{
     display: flex;
-    gap: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+.mail-preview-container .mail-body {
+    color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 1;
+}
+.mail-preview-container .mail-subject {
+  width: 170px ;
+  margin-inline-end: 30px;
+  }
+
+  
