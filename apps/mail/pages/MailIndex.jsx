@@ -17,13 +17,13 @@ export function MailIndex() {
     }, [mails])
 
     function LoadMails() {
-        
+
         mailService.query()
             .then(mails => setMails(mails))
             .catch(err => console.log('err:', err))
     }
     function onRemoveMail(mailId) {
-        setIsLoading(true)
+        // setIsLoading(true)
         mailService.remove(mailId)
             .then(() => {
                 setMails((prevMail) => prevMail.filter(mail => mail.id !== mailId))
@@ -35,9 +35,6 @@ export function MailIndex() {
 
     }
 
-    function onSelectMailId(mailId) {
-        setSelectedMailId(mailId)
-    }
 
     if (!mails) return <div className="loader">Loading...</div>
     const loadingClass = isLoading ? 'loading' : ''

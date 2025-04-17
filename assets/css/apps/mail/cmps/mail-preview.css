@@ -15,3 +15,7 @@
   width: 170px ;
   margin-inline-end: 30px;
   }
+
+  .not-read{
+    font-weight: bolder;
+  }
