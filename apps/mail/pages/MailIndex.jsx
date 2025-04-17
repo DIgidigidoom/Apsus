@@ -22,12 +22,12 @@ export function MailIndex() {
             .then(mails => setMails(mails))
             .catch(err => console.log('err:', err))
     }
-    function onRemoveMail(mailId) {
+    function onRemoveMail(mailId,ev) {
+        console.log("ev: ", ev)
+        ev.preventDefault()
+        ev.stopPropagation()
         // setIsLoading(true)
         mailService.remove(mailId)
-            .then(() => {
-                setMails((prevMail) => prevMail.filter(mail => mail.id !== mailId))
-            })
             .catch(err => {
                 console.log('Problem removing mail:', err)
             })

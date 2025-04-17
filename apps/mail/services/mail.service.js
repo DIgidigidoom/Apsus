@@ -34,7 +34,7 @@ function get(mailId) {
 
 function getEmptyMail() {
     return {
-        id: '',
+        id: null,
         createdAt: 0,
         subject: '',
         body: '',

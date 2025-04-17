@@ -12,6 +12,7 @@ import { MailDetails } from "./apps/mail/pages/MailDetails.jsx"
 //////////////////////Note Imports//////////////////////////////////////////////
 import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
 import { NoteDetails } from "./apps/note/pages/NoteDetails.jsx"
+import { AddMail } from "./apps/mail/cmps/AddMail.jsx"
 
 
 
@@ -26,6 +27,7 @@ export function App() {
                 { /* Mail Routes */ }
                 <Route path="/mail" element={<MailIndex />} />
                 <Route path="/mail/:mailId" element={<MailDetails />} />
+                <Route path="/mail/add" element={<AddMail />} />
                 
                 {/* note Routes */}
                 <Route path="/note" element={<NoteIndex />} />

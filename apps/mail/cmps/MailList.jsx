@@ -1,12 +1,10 @@
 import { MailPreview } from "./MailPreview.jsx";
 import { mailService } from "./../services/mail.service.js";
 const { Link } = ReactRouterDOM
-
+const { useState, useEffect } = React
 
 export function MailList({ mails, onRemoveMail }) {
-    const { useState, useEffect } = React
-
-    const [isRead, setIsRead] = useState(false)
+    
 
     function onSetIsRead(id) {
         mailService.get(id)
@@ -30,7 +28,7 @@ export function MailList({ mails, onRemoveMail }) {
                             </section>
                             <MailPreview mail={mail} />
                             <section className="mail-right-btns">
-                                <button onClick={() => onRemoveMail(mail.id)} className="btn remove-mail-list-btn">Delete</button>
+                                <button onClick={(event) => onRemoveMail(mail.id,event)} className="btn remove-mail-list-btn">Delete</button>
                             </section>
 
                         </li>
@@ -40,7 +38,7 @@ export function MailList({ mails, onRemoveMail }) {
 
             </ul>
             <button>
-            <Link to={`/book-index/add/`}>Add Mail</Link>
+                <Link to={`/mail/add/`}>Add Mail</Link>
             </button>
         </React.Fragment>
     )
