@@ -1,6 +1,6 @@
 :root {
     --main-bg-color: lightblue;
+    --read-bg-color: rgb(242, 246, 252);
+     --sepertor-color: rgb(238, 240, 242);
 
-
-    --sepertor-color : rgb(238,240,242);
 }

@@ -5,10 +5,11 @@
 
 .mail-list-container li {
     display: flex;
-    border-bottom: 1px solid var(--sepertor-color);
+    border-bottom: 2px solid var(--sepertor-color);
     padding-inline-start: 16px;
     cursor: pointer;
     align-items: center;
+    background-color: var(--read-bg-color);
 }
 
 .mail-list-container li:hover {
@@ -31,3 +32,8 @@
 .mail-right-btns button {
     z-index: 2;
 }
+
+.not-read{
+    font-weight: bolder;
+    background-color: white !important;
+  }

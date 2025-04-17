@@ -28,7 +28,7 @@ export function MailList({ mails, onRemoveMail }) {
                             </section>
                             <MailPreview mail={mail} />
                             <section className="mail-right-btns">
-                                <button onClick={(event) => onRemoveMail(mail.id,event)} className="btn remove-mail-list-btn">Delete</button>
+                                <button onClick={(event) => onRemoveMail(mail.id,event)} className="btn remove-mail-list-btn fa-solid fa-trash"></button>
                             </section>
 
                         </li>
