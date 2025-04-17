@@ -3,17 +3,29 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    align-items: center;
 }
-.mail-preview-container .mail-body {
-    color: #555;
+.mail-preview-container .mail-from {
+  flex: 0 0 170px;
+  margin-inline-end: 16px;
+  }
+.mail-preview-container .mail-subject {
+  flex: 0 0 auto;
+  margin-inline-end: 4px;
+  font-weight: 400;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  flex-shrink: 1;
-}
-.mail-preview-container .mail-subject {
-  width: 170px ;
-  margin-inline-end: 30px;
+  
   }
+.mail-preview-container .mail-body {
+  flex: 1; 
+  color: var(--light-txt-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: "Roboto", sans-serif;
+}
+
 
   

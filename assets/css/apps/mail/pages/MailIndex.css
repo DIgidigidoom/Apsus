@@ -1,1 +1,5 @@
  /* mail index  */
+ .mail-index{
+    font-family: roboto-regular;
+    color: var(--dark-txt-color);
+ }
