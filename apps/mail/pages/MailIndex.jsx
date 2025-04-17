@@ -13,7 +13,7 @@ export function MailIndex() {
 
     useEffect(() => {
         LoadInbox();
-    }, [mails])
+    }, [mails] )
 
     function LoadInbox() {
         mailService.query()
