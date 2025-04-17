@@ -2,7 +2,7 @@ import { MailPreview } from "./MailPreview.jsx";
 const { Link } = ReactRouterDOM
 
 
-export function MailList({ mails }) {
+export function MailList({ mails, onRemoveMail }) {
     // console.log(mails)
 
     if (!mails.length) return <div>No Mails To Show...</div>
@@ -13,7 +13,7 @@ export function MailList({ mails }) {
                     <li key={mail.id}>
                         <MailPreview mail={mail} />
                         <section>
-                            <button className="btn remove-mail-btn">Remove</button>
+                            <button onClick={() => onRemoveMail(mail.id)} className="btn remove-mail-btn">Remove</button>
                             <button className="btn mail-details-btn" >
                                 <Link mail={mail} to={`/mail/${mail.id}`}>Details</Link>
                             </button>
