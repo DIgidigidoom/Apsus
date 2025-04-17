@@ -10,10 +10,10 @@ export function MailList({ mails, onRemoveMail }) {
         <React.Fragment>
             <ul className="mail-list-container">
                 {mails.map(mail => (
-                    <li key={mail.id}>
+                    <li key={mail.id} >
                         <MailPreview mail={mail} />
-                        <section>
-                            <button onClick={() => onRemoveMail(mail.id)} className="btn remove-mail-btn">Remove</button>
+                        <section className="mail-list-btns">
+                            <button onClick={() => onRemoveMail(mail.id)} className="btn remove-mail-list-btn">Remove</button>
                             <button className="btn mail-details-btn" >
                                 <Link mail={mail} to={`/mail/${mail.id}`}>Details</Link>
                             </button>

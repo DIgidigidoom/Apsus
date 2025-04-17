@@ -14,7 +14,7 @@ export function MailIndex() {
     useEffect(() => {
         // setSearchParams(getTruthyValues(filterBy))
         LoadMails()
-    }, [])
+    }, [mails])
 
     function LoadMails() {
         mailService.query()
@@ -31,7 +31,7 @@ export function MailIndex() {
                 console.log('Problem removing mail:', err)
             })
             .finally(() => setIsLoading(false))
-           
+
     }
 
     function onSelectMailId(mailId) {
@@ -43,15 +43,8 @@ export function MailIndex() {
     return (
         <React.Fragment>
             <section className="mail-index">
-                {selectedMailId &&
-                    <MailDetails
-                        onBack={() => onSelectMailId(null)}
-                        mailId={selectedMailId}
-                    />
-                }
-                {!selectedMailId && (
-                    mails ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>Loading...</div>
-                )}
+                <MailList mails={mails} onRemoveMail={onRemoveMail} />
+                {/* mails ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>Loading...</div> */}
             </section>
         </React.Fragment>
     )

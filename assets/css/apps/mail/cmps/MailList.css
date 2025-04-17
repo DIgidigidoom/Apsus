@@ -1,1 +1,17 @@
- /* mail list */
+.mail-list-container{
+    border-top:1px solid var(--sepertor-color) ;
+    padding-inline-start: 0;
+}
+
+.mail-list-container li{
+    display: flex;
+    justify-content: space-between;
+    border-bottom:1px solid var(--sepertor-color) ;
+    padding-inline-start: 40px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.mail-list-container li:hover{
+   transform: scale(1.01);
+}

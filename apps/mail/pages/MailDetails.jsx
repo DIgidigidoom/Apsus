@@ -21,6 +21,18 @@ export function MailDetails() {
             .then(mail => setMail(mail))
             .catch(err => console.log('err:', err))
     }
+    function onRemoveMail(mailId) {
+        // setIsLoading(true)
+        mailService.remove(mailId)
+            .then(() => {
+                navigate('/mail')
+            })
+            .catch(err => {
+                console.log('Problem removing mail:', err)
+            })
+            
+
+    }
 
     function onBack() {
         navigate('/mail')
@@ -37,6 +49,8 @@ export function MailDetails() {
                 <p className="mail-to">{mail.to}</p>
                 <p className="mail-sent-at">{mail.sentAt}</p>
                 <button className="btn back-btn-details" onClick={onBack}>Back</button>
+                <button className="btn remove-mail-details-btn" onClick={() => onRemoveMail(mail.id)}>Delete
+                </button>
             </div>
         </React.Fragment>
     )
