@@ -115,7 +115,8 @@ function _createMail(createdAt, subject, body, isRead, sentAt, removedAt, from, 
         sentAt,
         removedAt,
         from,
-        to
+        to,
+        isRead: Math.random()>0.5
     }
 
     return mail
