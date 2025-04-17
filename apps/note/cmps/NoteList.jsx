@@ -7,13 +7,14 @@ export function NoteList({ notes }) {
         <div className="note-list-container">
             {notes.map(note => (
                 <section className="note-preview" key={note.id}>
-                    <NotePreview note={note}/>
+                    <NotePreview note={note} />
+                    <button className="btn remove-note-btn">Remove</button>
+                    <button className="btn note-details-btn" >
+                        <Link to={`/note/details/`}>Details</Link>
+                    </button>
                 </section>
             ))}
-            <button className="btn remove-note-btn">Remove</button>
-            <button className="btn note-details-btn" >
-                <Link to={`/note/details/`}>Details</Link>
-            </button>
+
         </div>
     )
 }
