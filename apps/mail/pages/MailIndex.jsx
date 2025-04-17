@@ -1,5 +1,16 @@
+import { MailList } from "../cmps/MailList.jsx"
+
+const { useState, useEffect } = React
 
 export function MailIndex() {
-    return <div>mail app</div>
+
+
+
+    return (
+        <React.Fragment>
+            <div>mail app</div>
+            <MailList />
+        </React.Fragment>
+    )
 }
 
