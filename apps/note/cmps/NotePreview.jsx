@@ -1,12 +1,20 @@
+import { NoteImg } from "./NoteImg.jsx"
+import { NoteTodos } from "./NotesTodos.jsx"
+import { NoteTxt } from "./NoteTxt.jsx"
 
 export function NotePreview({ note }) {
     const { type, info } = note
-    const { txt } = info
+
+    const componentMap = {
+        NoteTxt,
+        NoteImg,
+        NoteTodos
+    }
+    const DynamicCmp = componentMap[type] || (() => <p>Unknown type</p>)
 
     return (
         <article className="note-info">
-            <h1>{type}</h1>
-            <h2>{txt}</h2>
+           <DynamicCmp info={info} />
         </article>
     )
 }

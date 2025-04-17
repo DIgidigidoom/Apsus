@@ -18,10 +18,10 @@ const demoNotes = [
     {
         id: 'n102',
         createdAt: 1112223,
-        type: 'NoteTxt',
+        type: 'NoteImg',
         isPinned: false,
         info: {
-            url: 'http://some-img/me',
+            url: 'https://picsum.photos/200',
             title: 'Bobi and Me'
         },
         style: {
@@ -31,7 +31,7 @@ const demoNotes = [
     {
         id: 'n103',
         createdAt: 1112224,
-        type: 'NoteTxt',
+        type: 'NoteTodos',
         isPinned: false,
         info: {
             title: 'Get my stuff together',

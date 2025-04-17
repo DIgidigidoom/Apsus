@@ -20,14 +20,25 @@ export function NoteIndex() {
             })
     }
 
+    function onRemoveNote(noteId) {
+        noteService.remove(noteId)
+            .then(() => {
+                setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
+                // showSuccessMsg(`Note (${noteId}) removed successfully!`)
+            })
+            .catch(err => {
+                console.log('Problem removing note:', err)
+                // showErrorMsg('Problem removing note!')
+            })
+            // .finally(() => setIsLoading(false))
+    }
+
     console.log("notes: ", notes)
 
     if (!notes) return <div>loading...</div>
     return (
         <React.Fragment>
-            <NoteList notes={notes} />
+            <NoteList notes={notes} onRemoveNote={onRemoveNote}  />
         </React.Fragment>
-
-
     )
 }
