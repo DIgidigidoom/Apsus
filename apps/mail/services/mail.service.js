@@ -70,7 +70,7 @@ function _createMails() {
                 1681722456200,
                 null,
                 'jane@workspace.io',
-                'user@appsus.com'
+                'Tom-shahar@gmail.com'
             ),
 
             _createMail(
@@ -78,7 +78,7 @@ function _createMails() {
                 '"Hey! Just checking in—are we still on for the hike this Saturday? The weather forecast is looking really good, sunny with just a light breeze. I was thinking we could meet a bit earlier to beat the crowd and maybe grab a quick coffee before we head out. Let me know what time works best for you. Really looking forward to it!"',
                 1685918230055,
                 null,
-                'daniel@outdoors.net',
+                'Tom-shahar@gmail.com',
                 'user@appsus.com'
             ),
 
@@ -88,10 +88,26 @@ function _createMails() {
                 1690385105300,
                 null,
                 'billing@fintrack.com',
+                'Tom-shahar@gmail.com'
+            ),
+            _createMail(
+                'Invoice for March',
+                'Please find attached the invoice for the services rendered throughout the month of March. It includes a detailed breakdown of the work completed, hours logged, and associated costs. If you have any questions or need clarification on any part of the invoice, feel free to reach out.',
+                1690385105300,
+                null,
+                'Tom-shahar@gmail.com',
                 'user@appsus.com'
+            ),
+            _createMail(
+                'Weekend Plans?',
+                '"Hey! Just checking in—are we still on for the hike this Saturday? The weather forecast is looking really good, sunny with just a light breeze. I was thinking we could meet a bit earlier to beat the crowd and maybe grab a quick coffee before we head out. Let me know what time works best for you. Really looking forward to it!"',
+                1685918230055,
+                null,
+                'daniel@outdoors.net',
+                'Tom-shahar@gmail.com'
             )
         ]
-        console.log(mails)
+        
         utilService.saveToStorage(RECIEVED_MAILS_KEY, mails)
     }
 

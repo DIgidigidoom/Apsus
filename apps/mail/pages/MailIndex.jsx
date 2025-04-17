@@ -12,17 +12,20 @@ export function MailIndex() {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        // setSearchParams(getTruthyValues(filterBy))
-        LoadMails()
+        LoadInbox();
     }, [mails])
 
-    function LoadMails() {
-
+    function LoadInbox() {
         mailService.query()
-            .then(mails => setMails(mails))
-            .catch(err => console.log('err:', err))
+            .then(allMails => {
+                const tomsMails = allMails.filter(mail => mail.to === 'Tom-shahar@gmail.com');
+                setMails(tomsMails);
+            })
+            .catch(err => console.log('err:', err));
     }
-    function onRemoveMail(mailId,ev) {
+
+    
+    function onRemoveMail(mailId, ev) {
         console.log("ev: ", ev)
         ev.preventDefault()
         ev.stopPropagation()
@@ -34,8 +37,7 @@ export function MailIndex() {
             .finally(() => setIsLoading(false))
 
     }
-
-
+    
     if (!mails) return <div className="loader">Loading...</div>
     const loadingClass = isLoading ? 'loading' : ''
     return (
@@ -44,7 +46,7 @@ export function MailIndex() {
                 <MailList mails={mails} onRemoveMail={onRemoveMail} />
                 {/* mails ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>Loading...</div> */}
             </section>
-        </React.Fragment> 
+        </React.Fragment>
 
     )
 }
