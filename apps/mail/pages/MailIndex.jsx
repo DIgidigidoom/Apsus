@@ -17,6 +17,7 @@ export function MailIndex() {
     }, [mails])
 
     function LoadMails() {
+        
         mailService.query()
             .then(mails => setMails(mails))
             .catch(err => console.log('err:', err))
@@ -46,7 +47,8 @@ export function MailIndex() {
                 <MailList mails={mails} onRemoveMail={onRemoveMail} />
                 {/* mails ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>Loading...</div> */}
             </section>
-        </React.Fragment>
+        </React.Fragment> 
+
     )
 }
 
