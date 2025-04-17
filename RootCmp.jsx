@@ -11,6 +11,7 @@ import { MailDetails } from "./apps/mail/pages/MailDetails.jsx"
 
 //////////////////////Note Imports//////////////////////////////////////////////
 import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
+import { NoteDetails } from "./apps/note/pages/NoteDetails.jsx"
 
 
 
@@ -28,6 +29,7 @@ export function App() {
                 
                 {/* note Routes */}
                 <Route path="/note" element={<NoteIndex />} />
+                <Route path="/note/details" element={<NoteDetails />} />
 
             </Routes>
         </section>
