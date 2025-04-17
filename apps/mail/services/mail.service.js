@@ -5,6 +5,13 @@ const RECIEVED_MAILS_KEY = 'recivedMailsDB'
 // const SENT_MAILS_KEY = 'sentMailsDB'
 _createMails()
 
+export const mailService = {
+    query,
+    get,
+    remove,
+    save,
+    getEmptyMail
+}
 function query(filterBy = {}) {
     return storageService.query(RECIEVED_MAILS_KEY)
         .then(mails => {
@@ -21,7 +28,7 @@ function query(filterBy = {}) {
 }
 
 function get(mailId) {
-    return storageService.get(RECIEVED_MAILS_KEY, mailId).then(_setNextPrevMailId)
+    return storageService.get(RECIEVED_MAILS_KEY, mailId)
 }
 
 
@@ -93,7 +100,7 @@ function _createMails() {
         console.log(mails)
         utilService.saveToStorage(RECIEVED_MAILS_KEY, mails)
     }
-    
+
 }
 
 
