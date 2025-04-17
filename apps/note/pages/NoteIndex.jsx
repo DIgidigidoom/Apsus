@@ -1,3 +1,4 @@
+import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
 
 const { useState, useEffect } = React
@@ -15,10 +16,18 @@ export function NoteIndex() {
             .then(notes => setNotes(notes))
             .catch(err => {
                 console.log('err:', err)
-                showErrorMsg('Cannot get notes!')
+                // showErrorMsg('Cannot get notes!')
             })
     }
 
-console.log("notes: ", notes)
-    return <div>note app</div>
+    console.log("notes: ", notes)
+
+    if (!notes) return <div>loading...</div>
+    return (
+        <React.Fragment>
+            <NoteList notes={notes} />
+        </React.Fragment>
+
+
+    )
 }
