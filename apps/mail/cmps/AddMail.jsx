@@ -1,10 +1,12 @@
 import { mailService } from "../services/mail.service.js"
 
 const { useState } = React
-const { Link } = ReactRouterDOM
+const { Link, useNavigate } = ReactRouterDOM
 
 export function AddMail() {
     const [mailToAdd, setMailToAdd] = useState(mailService.getEmptyMail())
+
+    const navigate = useNavigate()
 
     function handleChange({ target }) {
         const field = target.name
@@ -34,7 +36,11 @@ export function AddMail() {
             to: mailToAdd.to
         }
         mailService.save(newMail)
+        onBack()
 
+    }
+    function onBack() {
+        navigate('/mail')
     }
     return (
         <section className="add-mail container">
@@ -48,11 +54,6 @@ export function AddMail() {
                 <input onChange={handleChange} value={mailToAdd.body} name="body" id="body" type="text" />
                 <label htmlFor="txt">To:</label>
                 <input onChange={handleChange} value={mailToAdd.to} name="to" id="yo" type="text" />
-
-
-                <button className="btn add-book-btn" id="add-book">
-                    <Link to={`/book-index/edit/`}>Add Book</Link>
-                </button>
                 <button className="btn book-filter-btn">Submit</button>
             </form>
         </section>
