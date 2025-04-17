@@ -67,7 +67,7 @@ function _createMails() {
             _createMail(
                 1681722456100,
                 'Project Update',
-                'The latest project files have been uploaded. Let me know your thoughts.',
+                'Hey! Ive just finished uploading the latest project files to the shared folder. They include all the updates we discussed in our last meeting, along with a few refinements based on the feedback you provided. When you have a chance, take a look and let me know your thoughts. Im happy to go over anything in more detail or make adjustments if needed. Looking forward to hearing what you think!',
                 true,
                 1681722456200,
                 null,
@@ -78,7 +78,7 @@ function _createMails() {
             _createMail(
                 1685918230000,
                 'Weekend Plans?',
-                'Are we still on for the hike this Saturday? Forecast looks great!',
+                '"Hey! Just checking in—are we still on for the hike this Saturday? The weather forecast is looking really good, sunny with just a light breeze. I was thinking we could meet a bit earlier to beat the crowd and maybe grab a quick coffee before we head out. Let me know what time works best for you. Really looking forward to it!"',
                 false,
                 1685918230055,
                 null,
@@ -89,7 +89,7 @@ function _createMails() {
             _createMail(
                 1690385105000,
                 'Invoice for March',
-                'Please find attached the invoice for services rendered in March.',
+                'Please find attached the invoice for the services rendered throughout the month of March. It includes a detailed breakdown of the work completed, hours logged, and associated costs. If you have any questions or need clarification on any part of the invoice, feel free to reach out.',
                 true,
                 1690385105300,
                 null,
