@@ -1,3 +1,4 @@
+import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
 
@@ -9,7 +10,7 @@ export function NoteIndex() {
 
     useEffect(() => {
         loadNotes()
-    }, [])
+    }, [notes])
 
     function loadNotes() {
         noteService.query()
@@ -38,6 +39,7 @@ export function NoteIndex() {
     if (!notes) return <div>loading...</div>
     return (
         <React.Fragment>
+            <AddNote />
             <NoteList notes={notes} onRemoveNote={onRemoveNote}  />
         </React.Fragment>
     )

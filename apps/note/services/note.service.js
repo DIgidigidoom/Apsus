@@ -49,6 +49,7 @@ export const noteService = {
     get,
     remove,
     save,
+    getEmptyNote
 }
 
 function query() {
@@ -72,6 +73,21 @@ function save(note) {
         return storageService.put(NOTE_KEY, note)
     } else {
         return storageService.post(NOTE_KEY, note)
+    }
+}
+
+function getEmptyNote() {
+    return {
+        id: null,
+        createdAt: 0,
+        type: '',
+        isPinned: false,
+        style: {
+            backgroundColor: ''
+        },
+        info: {
+            txt: ''
+        }
     }
 }
 
