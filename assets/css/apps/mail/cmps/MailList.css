@@ -15,6 +15,9 @@
 .mail-list-container li:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+.mail-list-container li:hover .mail-right-btns {
+    z-index: 2;
+}
 
 .mail-left-buttons {
     display: flex;
@@ -28,9 +31,16 @@
     cursor: pointer;
     z-index: 2;
 }
+.mail-right-btns {
+    
+    z-index: -1;
+
+}
 
 .mail-right-btns button {
-    z-index: 2;
+    z-index: -1;
+    background-color: transparent;
+    border: none;
 }
 
 .not-read{
