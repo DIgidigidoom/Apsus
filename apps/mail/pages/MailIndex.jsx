@@ -25,13 +25,13 @@ export function MailIndex() {
     }, [filterBy, triggerReload, mailType])
 
     function _countUnread() {
-        console.log(gUnreadMails)
+
         mailService.query()
-        .then(allMails => {
-            gUnreadMails = allMails.filter(mail => mail.isRead === false && mail.type === 'inbox')
-        })
-        .catch(err => console.log('err:', err))
-        
+            .then(allMails => {
+                gUnreadMails = allMails.filter(mail => mail.isRead === false && mail.type === 'inbox')
+            })
+            .catch(err => console.log('err:', err))
+
     }
 
     function LoadMails() {
@@ -47,18 +47,30 @@ export function MailIndex() {
 
 
     function onRemoveMail(mailId, ev) {
-        console.log("ev: ", ev)
         ev.preventDefault()
         ev.stopPropagation()
         setIsLoading(true)
-        mailService.remove(mailId)
-            .then(() => {
-                setTriggerReload(prev => !prev)
+        mailService.get(mailId)
+            .then(mail => {
+                if (mail.type !== 'trash') {
+                    mail.type = 'trash'
+                    mailService.save(mail)
+                        .then(() => {
+                            setTriggerReload(prev => !prev)
+                        })
+                } else {
+                    mailService.remove(mailId)
+                        .then(() => {
+                            setTriggerReload(prev => !prev)
+                        })
+                        .catch(err => {
+                            console.log('Problem removing mail:', err)
+                        })
+
+                }
             })
-            .catch(err => {
-                console.log('Problem removing mail:', err)
-            })
-            .finally(() => setIsLoading(false))
+
+
 
     }
     function onToggleIsRead(id, ev) {
@@ -85,7 +97,7 @@ export function MailIndex() {
         setMailType(type)
     }
 
-    
+
 
     if (!mails) return <div className="loader">Loading...</div>
     const loadingClass = isLoading ? 'loading' : ''
