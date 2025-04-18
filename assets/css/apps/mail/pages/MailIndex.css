@@ -1,5 +1,45 @@
  /* mail index  */
- .mail-index{
-   
+ .mail-index {
+    display: grid;
+    grid-template-areas:
+       "side-nav mail-filter"
+       "side-nav mail-list";
     color: var(--dark-txt-color);
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    background-color: var(--mail-bg-color);
+ }
+
+ .mail-index>* {
+    height: fit-content;
+    overflow-y: auto;
+    padding: 0;
+ }
+
+
+ .mail-filter-container {
+    grid-area: mail-filter;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+ }
+
+ .side-nav-container {
+    grid-area: side-nav;
+    padding: 16px;
+    height: 100%;
+    
+ }
+
+ .mail-list-container {
+    grid-area: mail-list;
+    padding-inline-start: 0;
+    position: relative;
+    margin: 0;
+    background-color: white;
+    border-radius: 20px;
+    
  }

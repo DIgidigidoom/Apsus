@@ -1,5 +1,6 @@
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
+import { SideNav } from "../cmps/SideNav.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailDetails } from "./MailDetails.jsx"
 
@@ -77,11 +78,13 @@ export function MailIndex() {
     return (
         <React.Fragment>
             <section className="mail-index">
+                <SideNav />
                 <MailFilter
                     onSetFilterBy={onSetFilterBy}
                     filterBy={filterBy} />
-                <p>Number Of Unread Mails - {gUnreadMails.length}</p>
+                
                 <MailList
+                    unreadMails={gUnreadMails.length}
                     mails={mails}
                     onRemoveMail={onRemoveMail}
                     onToggleIsRead={onToggleIsRead} />
