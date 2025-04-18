@@ -2,6 +2,7 @@ import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
 
+
 const { useState, useEffect } = React
 
 export function NoteIndex() {
@@ -25,16 +26,16 @@ export function NoteIndex() {
         noteService.remove(noteId)
             .then(() => {
                 setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
-                showSuccessMsg(`Note (${noteId}) removed successfully!`)
+                // showSuccessMsg(`Note (${noteId}) removed successfully!`)
             })
             .catch(err => {
                 console.log('Problem removing note:', err)
-                showErrorMsg('Problem removing note!')
+                // showErrorMsg('Problem removing note!')
             })
             // .finally(() => setIsLoading(false))
     }
 
-    console.log("notes: ", notes)
+    // console.log("notes: ", notes)
 
     if (!notes) return <div>loading...</div>
     return (
