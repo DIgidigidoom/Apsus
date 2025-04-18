@@ -33,7 +33,8 @@ export function AddMail() {
             sentAt: Date.now(),
             removedAt: null,
             from: 'Tomshahar91@gmail.com',
-            to: mailToAdd.to
+            to: mailToAdd.to,
+            type :'sent'
         }
         mailService.save(newMail)
         onBack()

@@ -3,7 +3,6 @@ const { Link } = ReactRouterDOM
 
 export function MailFilter({ filterBy, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-    console.log(filterBy)
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
     }, [filterByToEdit])
@@ -33,12 +32,12 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
     const { txt } = filterByToEdit
     return (
         <section className="mail-filter-container">
-            <h2>Filter Our Mails</h2>
             <form onSubmit={onSubmitFilter}>
-                <label htmlFor="txt">Title</label>
-                <input onChange={handleChange} value={txt} name="txt" id="txt" type="text" />
+                <div className="mail-search-bar">
+                    <button className="btn mail-filter-btn fa-solid fa-magnifying-glass search-icon"></button>
+                    <input className="search-input" onChange={handleChange} value={txt} name="txt" id="txt" type="text" />
+                </div>
 
-                <button className="btn mail-filter-btn">Submit</button>
             </form>
         </section>
     )

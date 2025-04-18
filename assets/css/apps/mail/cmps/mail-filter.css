@@ -1,0 +1,40 @@
+.mail-search-bar{
+    display: flex;
+  align-items: center;
+  background-color: var(--mail-srch-bg);
+  border-radius: 50px;
+  padding: 8px 12px;
+  width: 100%;
+  height: 38px;
+  margin: 0 auto;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.mail-filter-container form{
+    max-width: 1020px;
+   
+    width: 40vw;
+    
+}
+
+.mail-search-bar:focus-within {
+    box-shadow: 0 1px 6px rgba(60, 64, 67, 0.3);
+  }
+  .search-icon {
+    color: #5f6368;
+    margin-right: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    width: 100%;
+    color: #202124;
+    font-family: 'Roboto', sans-serif;
+  }
