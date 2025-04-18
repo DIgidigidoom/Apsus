@@ -4,9 +4,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     align-items: center;
+    position: relative;
+    width: 100%;
 }
 .mail-preview-container .mail-from {
-  flex: 0 0 170px;
+  flex: 0 0 250px;
   margin-inline-end: 16px;
   }
 .mail-preview-container .mail-subject {
@@ -24,6 +26,15 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: roboto-light !important;
+  max-width: 70%;
+  margin-inline-end: 20px;
+  
+}
+.mail-preview-container .mail-recieve-time{
+  margin-left: auto;
+  margin-right: 20px;
+  white-space: nowrap;
   
 }
 

@@ -1,7 +1,8 @@
 .mail-list-container {
     border-top: 1px solid var(--sepertor-color);
     padding-inline-start: 0;
-    
+    position: relative;
+
 }
 
 .mail-list-container li {
@@ -16,8 +17,13 @@
 .mail-list-container li:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
 .mail-list-container li:hover .mail-right-btns {
-    z-index: 2;
+    z-index: 100;
+}
+
+.mail-list-container li:hover .mail-recieve-time {
+    z-index: -1;
 }
 
 .mail-left-buttons {
@@ -32,8 +38,10 @@
     cursor: pointer;
     z-index: 2;
 }
+
 .mail-right-btns {
-    
+    position: absolute;
+    right: 20px;
     z-index: -1;
 
 }
@@ -44,8 +52,9 @@
     border: none;
 }
 
-.not-read{
+
+
+.not-read {
     font-family: roboto-bold;
     background-color: white !important;
-  }
-  
+}
