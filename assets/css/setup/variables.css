@@ -1,11 +1,14 @@
 :root {
     --main-bg-color: lightblue;
-    --mail-bg-color: rgb(248,250,253);
+    --mail-bg-color: rgb(248, 250, 253);
     --read-bg-color: rgb(242, 246, 252);
-     --sepertor-color: rgb(238, 240, 242);
-     
-     
-     --light-txt-color: #5F6368;
-     --dark-txt-color: rgb(32, 33, 36);
+
+
+    --sepertor-color: rgb(238, 240, 242);
+    --compose-btn-bg: rgb(194, 231, 255);
+
+    --light-txt-color: #5F6368;
+    --hover-side-nav-color: #dde0e4;
+    --dark-txt-color: rgb(32, 33, 36);
 
 }

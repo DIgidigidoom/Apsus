@@ -3,7 +3,7 @@ import { mailService } from "./../services/mail.service.js";
 const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function MailList({ mails, onRemoveMail, onToggleIsRead,unreadMails }) {
+export function MailList({ mails, onRemoveMail, onToggleIsRead, unreadMails }) {
 
 
     function onSetIsRead(id) {
@@ -19,7 +19,7 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead,unreadMails }) {
     return (
         <React.Fragment>
             <ul className="mail-list-container">
-            <p>Number Of Unread Mails - {unreadMails}</p>
+                <p>Number Of Unread Mails - {unreadMails}</p>
                 {mails.map(mail => (
                     <Link key={mail.id} mail={mail} to={`/mail/${mail.id}`}>
                         <li className={!mail.isRead ? "not-read" : ""} onClick={() => onSetIsRead(mail.id)} >
@@ -47,9 +47,6 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead,unreadMails }) {
                 ))}
 
             </ul>
-            <button>
-                <Link to={`/mail/add/`}>Add Mail</Link>
-            </button>
         </React.Fragment>
     )
 }

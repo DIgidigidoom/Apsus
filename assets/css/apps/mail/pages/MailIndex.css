@@ -5,7 +5,7 @@
        "side-nav mail-filter"
        "side-nav mail-list";
     color: var(--dark-txt-color);
-    grid-template-columns: 240px 1fr;
+    grid-template-columns: 256px 1fr;
     grid-template-rows: auto 1fr;
     height: 100vh;
     background-color: var(--mail-bg-color);
