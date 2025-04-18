@@ -6,6 +6,7 @@
     cursor: pointer;
     align-items: center;
     background-color: var(--read-bg-color);
+    
 }
 
 .mail-list-container li:hover {

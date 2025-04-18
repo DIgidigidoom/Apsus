@@ -19,7 +19,7 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead, unreadMails }) {
     return (
         <React.Fragment>
             <ul className="mail-list-container">
-                <p>Number Of Unread Mails - {unreadMails}</p>
+                
                 {mails.map(mail => (
                     <Link key={mail.id} mail={mail} to={`/mail/${mail.id}`}>
                         <li className={!mail.isRead ? "not-read" : ""} onClick={() => onSetIsRead(mail.id)} >

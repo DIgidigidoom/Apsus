@@ -7,11 +7,19 @@
 .add-mail-btn {
     background-color: var(--compose-btn-bg);
     border: none;
-    width: 120px;
-    height: 55px;
+    width: 142px;
+    height: 56px;
     border-radius: 16px;
     font-weight: 600;
     margin-block-end: 16px;
+    margin-inline-start: 6px;
+    font-size: 1.1em;
+}
+
+.mail-logo {
+    width: 109px;
+    height: auto;
+    margin: 16px auto;
 }
 
 .side-nav-btn {
@@ -23,6 +31,8 @@
     border-radius: 0 20px 20px 0;
     padding-inline-start: 26px;
     text-align: left;
+    align-items: center;
+    font-size: 1.1rem;
 
 
 }
@@ -32,12 +42,11 @@
 
 }
 
-.inbox-btn {
+.side-nav-btn {
     display: flex;
     gap: 18px;
 }
 
-.sent-btn {
-    display: flex;
-    gap: 18px;
+.inbox-btn span {
+    margin-inline-end: 80px;
 }

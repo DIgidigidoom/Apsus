@@ -7,7 +7,8 @@ import { MailDetails } from "./MailDetails.jsx"
 const { useState, useEffect } = React
 const { useSearchParams } = ReactRouterDOM
 
-var gUnreadMails
+var gUnreadMails = 0
+
 
 export function MailIndex() {
 
@@ -16,18 +17,30 @@ export function MailIndex() {
     const [isLoading, setIsLoading] = useState(false)
     const [triggerReload, setTriggerReload] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter)
+    const [mailType, setMailType] = useState('inbox')
 
     useEffect(() => {
+        _countUnread()
+        LoadMails()
+    }, [filterBy, triggerReload, mailType])
 
-        LoadInbox()
-    }, [filterBy, triggerReload])
+    function _countUnread() {
+        console.log(gUnreadMails)
+        mailService.query()
+        .then(allMails => {
+            gUnreadMails = allMails.filter(mail => mail.isRead === false && mail.type === 'inbox')
+        })
+        .catch(err => console.log('err:', err))
+        
+    }
 
-    function LoadInbox() {
+    function LoadMails() {
         mailService.query(filterBy)
             .then(allMails => {
-                const inboxMails = allMails.filter(mail => mail.to === 'Tom-shahar@gmail.com')
-                gUnreadMails = _countUnread(inboxMails)
-                setMails(inboxMails)
+                const Mails = allMails.filter(mail => mail.type === mailType)
+                setMails(Mails)
+                // gUnreadMails = _countUnread(Mails)
+
             })
             .catch(err => console.log('err:', err))
     }
@@ -68,23 +81,27 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
     }
 
-    function _countUnread(inboxMails) {
-
-        return inboxMails.filter(mail => mail.isRead === false)
+    function onSetType(type) {
+        setMailType(type)
     }
+
+    
 
     if (!mails) return <div className="loader">Loading...</div>
     const loadingClass = isLoading ? 'loading' : ''
     return (
         <React.Fragment>
             <section className="mail-index">
-                <SideNav />
+                <SideNav
+                    unreadMails={gUnreadMails.length}
+                    onSetType={onSetType}
+                />
                 <MailFilter
                     onSetFilterBy={onSetFilterBy}
                     filterBy={filterBy} />
-                
+
                 <MailList
-                    unreadMails={gUnreadMails.length}
+
                     mails={mails}
                     onRemoveMail={onRemoveMail}
                     onToggleIsRead={onToggleIsRead} />
