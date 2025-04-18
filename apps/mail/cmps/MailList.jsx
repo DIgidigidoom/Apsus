@@ -3,7 +3,7 @@ import { mailService } from "./../services/mail.service.js";
 const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function MailList({ mails, onRemoveMail, onToggleIsRead }) {
+export function MailList({ mails, onRemoveMail, onToggleIsRead, unreadMails }) {
 
 
     function onSetIsRead(id) {
@@ -19,6 +19,7 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead }) {
     return (
         <React.Fragment>
             <ul className="mail-list-container">
+                <p>Number Of Unread Mails - {unreadMails}</p>
                 {mails.map(mail => (
                     <Link key={mail.id} mail={mail} to={`/mail/${mail.id}`}>
                         <li className={!mail.isRead ? "not-read" : ""} onClick={() => onSetIsRead(mail.id)} >
@@ -29,11 +30,6 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead }) {
                             <MailPreview mail={mail} />
                             <section className="mail-right-btns">
                                 <button onClick={(event) => onRemoveMail(mail.id, event)} className="btn remove-mail-list-btn fa-solid fa-trash"></button>
-                                {/* <button
-                                    className={`btn toggle-read-list-btn fa-solid 
-                                    ${!mail.isRead ? 'fa-envelope-open' : 'fa-envelope'}`}
-                                    onClick={(e) => {onToggleIsRead(mail.id,e)}}>
-                                </button> */}
                                 <button
                                     className="btn toggle-read-list-btn"
                                     onClick={(e) => { onToggleIsRead(mail.id, e) }}
@@ -51,9 +47,6 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead }) {
                 ))}
 
             </ul>
-            <button>
-                <Link to={`/mail/add/`}>Add Mail</Link>
-            </button>
         </React.Fragment>
     )
 }

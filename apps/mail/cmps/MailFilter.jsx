@@ -32,7 +32,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
 
     const { txt } = filterByToEdit
     return (
-        <section className="mail-filter container">
+        <section className="mail-filter-container">
             <h2>Filter Our Mails</h2>
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt">Title</label>

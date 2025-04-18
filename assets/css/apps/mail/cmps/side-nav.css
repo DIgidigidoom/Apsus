@@ -1,0 +1,43 @@
+.side-nav-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.add-mail-btn {
+    background-color: var(--compose-btn-bg);
+    border: none;
+    width: 120px;
+    height: 55px;
+    border-radius: 16px;
+    font-weight: 600;
+    margin-block-end: 16px;
+}
+
+.side-nav-btn {
+    background-color: transparent;
+    border: none;
+    width: 240px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 0 20px 20px 0;
+    padding-inline-start: 26px;
+    text-align: left;
+
+
+}
+
+.side-nav-btn:hover {
+    background-color: var(--hover-side-nav-color);
+
+}
+
+.inbox-btn {
+    display: flex;
+    gap: 18px;
+}
+
+.sent-btn {
+    display: flex;
+    gap: 18px;
+}
