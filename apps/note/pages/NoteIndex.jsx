@@ -1,4 +1,5 @@
 import { AddNote } from "../cmps/AddNote.jsx"
+import { NoteHeader } from "../cmps/NoteHeader.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
 
@@ -32,7 +33,7 @@ export function NoteIndex() {
                 console.log('Problem removing note:', err)
                 // showErrorMsg('Problem removing note!')
             })
-            // .finally(() => setIsLoading(false))
+        // .finally(() => setIsLoading(false))
     }
 
     // console.log("notes: ", notes)
@@ -40,10 +41,11 @@ export function NoteIndex() {
     if (!notes) return <div>loading...</div>
     return (
         <React.Fragment>
+            <NoteHeader />
             <AddNote />
             {/* // component pinnotes */}
             {/* is pined && <pinnotes> recives all notes and show only the pinned  */}
-            <NoteList notes={notes} onRemoveNote={onRemoveNote}  />
+            <NoteList notes={notes} onRemoveNote={onRemoveNote} />
         </React.Fragment>
     )
 }

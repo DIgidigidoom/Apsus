@@ -88,11 +88,11 @@ export function AddNote() {
                 ]
             }
         }
-    
+
         noteService.save(newNote)
         setNoteToAdd(noteService.getEmptyNote())
     }
-    
+
 
     return (
         <section className="add-note-container flex">
