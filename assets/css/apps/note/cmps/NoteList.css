@@ -3,3 +3,18 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
+.color-picker {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.color-btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: 1px solid #ccc;
+}

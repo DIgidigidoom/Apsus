@@ -14,7 +14,8 @@ export function NotePreview({ note }) {
 
     return (
         <article className="note-info">
-           <DynamicCmp info={info} />
+            <DynamicCmp info={info} />
         </article>
     )
 }
+
