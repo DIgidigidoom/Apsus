@@ -10,14 +10,15 @@ export const mailService = {
     get,
     remove,
     save,
-    getEmptyMail
+    getEmptyMail,
+    getDefaultFilter
 }
 function query(filterBy = {}) {
     return storageService.query(RECIEVED_MAILS_KEY)
         .then(mails => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                mails = mails.filter(mail => regExp.test(mail.title))
+                mails = mails.filter(mail => regExp.test(mail.subject) || regExp.test(mail.body))
             }
             if (filterBy.price) {
                 mails = mails.filter(mail => mail.listPrice.amount >= filterBy.price)
@@ -30,7 +31,9 @@ function query(filterBy = {}) {
 function get(mailId) {
     return storageService.get(RECIEVED_MAILS_KEY, mailId)
 }
-
+function getDefaultFilter() {
+    return { txt: '' }
+}
 
 function getEmptyMail() {
     return {

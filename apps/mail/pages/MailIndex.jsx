@@ -1,3 +1,4 @@
+import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailDetails } from "./MailDetails.jsx"
@@ -12,13 +13,16 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [selectedMailId, setSelectedMailId] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+    const [triggerReload, setTriggerReload] = useState(false)
+    const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter)
 
     useEffect(() => {
+
         LoadInbox()
-    }, [mails])
+    }, [filterBy, triggerReload])
 
     function LoadInbox() {
-        mailService.query()
+        mailService.query(filterBy)
             .then(allMails => {
                 const inboxMails = allMails.filter(mail => mail.to === 'Tom-shahar@gmail.com')
                 gUnreadMails = _countUnread(inboxMails)
@@ -32,13 +36,35 @@ export function MailIndex() {
         console.log("ev: ", ev)
         ev.preventDefault()
         ev.stopPropagation()
-        // setIsLoading(true)
+        setIsLoading(true)
         mailService.remove(mailId)
+            .then(() => {
+                setTriggerReload(prev => !prev)
+            })
             .catch(err => {
                 console.log('Problem removing mail:', err)
             })
             .finally(() => setIsLoading(false))
 
+    }
+    function onToggleIsRead(id, ev) {
+        ev.stopPropagation()
+        ev.preventDefault()
+        mailService.get(id)
+            .then(mail => {
+                mail.isRead = !mail.isRead
+                return mailService.save(mail)
+            })
+            .then(() => {
+                setTriggerReload(prev => !prev)
+            })
+            .catch(err => {
+                console.log('Problem toggling read :', err)
+            })
+    }
+
+    function onSetFilterBy(filterByToEdit) {
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
     }
 
     function _countUnread(inboxMails) {
@@ -51,8 +77,14 @@ export function MailIndex() {
     return (
         <React.Fragment>
             <section className="mail-index">
+                <MailFilter
+                    onSetFilterBy={onSetFilterBy}
+                    filterBy={filterBy} />
                 <p>Number Of Unread Mails - {gUnreadMails.length}</p>
-                <MailList mails={mails} onRemoveMail={onRemoveMail} />
+                <MailList
+                    mails={mails}
+                    onRemoveMail={onRemoveMail}
+                    onToggleIsRead={onToggleIsRead} />
                 {/* mails ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>Loading...</div> */}
             </section>
         </React.Fragment>
