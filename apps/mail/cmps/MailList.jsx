@@ -19,7 +19,11 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead, unreadMails }) {
     return (
         <React.Fragment>
             <ul className="mail-list-container">
-                
+                <div className="list-tool-bar">
+                    <button className="check-all-btn fa-regular fa-square"></button>
+                    <button className="refresh-btn fa-solid fa-rotate-right"></button>
+                    <button  className="more-tool-bar-btn fa-solid fa-ellipsis-vertical"></button>
+                </div>
                 {mails.map(mail => (
                     <Link key={mail.id} mail={mail} to={`/mail/${mail.id}`}>
                         <li className={!mail.isRead ? "not-read" : ""} onClick={() => onSetIsRead(mail.id)} >

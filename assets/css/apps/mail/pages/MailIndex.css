@@ -2,7 +2,7 @@
  .mail-index {
     display: grid;
     grid-template-areas:
-       "side-nav mail-filter"
+       "mail-filter mail-filter"
        "side-nav mail-list";
     color: var(--dark-txt-color);
     grid-template-columns: 256px 1fr;
@@ -23,15 +23,23 @@
     padding: 16px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    
+    position: fixed;
+    left: 0;
+    top: 65px;
+    z-index: 100;
+    overflow-x: hidden;
+    background-color: var(--mail-bg-color);
+    width: 100%;
  }
 
  .side-nav-container {
     grid-area: side-nav;
     padding: 16px;
     height: 100%;
-    
+    position: fixed;
+    left: 0;
+    top: 142px;
+    z-index: 100;
  }
 
  .mail-list-container {
@@ -39,8 +47,9 @@
     padding-inline-start: 0;
     position: relative;
     margin: 0;
+    margin-top: 80px;
     background-color: white;
     border-radius: 20px;
     height: 85vh;
-    
+
  }

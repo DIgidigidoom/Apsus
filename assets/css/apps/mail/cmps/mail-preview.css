@@ -7,6 +7,10 @@
     position: relative;
     width: 100%;
 }
+.mail-preview-container >*{
+  margin: 0;
+}
+
 .mail-preview-container .mail-from {
   flex: 0 0 250px;
   margin-inline-end: 16px;
