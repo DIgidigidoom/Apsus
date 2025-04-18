@@ -1,6 +1,7 @@
 .mail-list-container {
     border-top: 1px solid var(--sepertor-color);
     padding-inline-start: 0;
+    
 }
 
 .mail-list-container li {
@@ -44,6 +45,7 @@
 }
 
 .not-read{
-    font-weight: bolder;
+    font-family: roboto-bold;
     background-color: white !important;
   }
+  
