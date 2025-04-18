@@ -1,26 +1,29 @@
+
 import { noteService } from "../services/note.service.js"
 
-const { useState } = React
+const { useState, useRef } = React
 const { Link, useNavigate } = ReactRouterDOM
 
 export function AddNote() {
+
     const navigate = useNavigate()
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
-    const [selectedNote, setSelectedNote] = useState(null)
-
+    const fileInputRef = useRef(null)
 
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
 
-        switch (target.type) {
-            case 'number':
-            case 'range':
-                value = +value
-                break
-            case 'checkbox':
-                value = target.checked
-                break
+        if (target.type === 'file') {
+            const file = target.files[0]
+            if (!file) return
+            const reader = new FileReader()
+            reader.onload = () => {
+                const imageUrl = reader.result
+                onAddImageNote(imageUrl)
+            }
+            reader.readAsDataURL(file)
+            return
         }
 
         setNoteToAdd((prevNote) => ({
@@ -28,9 +31,12 @@ export function AddNote() {
         }))
     }
 
-
     function onAddNote(ev) {
         ev.preventDefault()
+        onAddTextNote()
+    }
+
+    function onAddTextNote() {
         const newNote = {
             id: null,
             createdAt: Date.now(),
@@ -44,9 +50,50 @@ export function AddNote() {
             }
         }
         noteService.save(newNote)
-
         setNoteToAdd(noteService.getEmptyNote())
     }
+
+    function onAddImageNote(imageUrl) {
+        const newNote = {
+            id: null,
+            createdAt: Date.now(),
+            type: 'NoteImg',
+            isPinned: false,
+            style: {
+                backgroundColor: '#00d'
+            },
+            info: {
+                url: imageUrl,
+                title: ''
+            }
+        }
+        noteService.save(newNote)
+        setNoteToAdd(noteService.getEmptyNote())
+    }
+
+    function onAddTodoNote() {
+        const newNote = {
+            id: null,
+            createdAt: Date.now(),
+            type: 'NoteTodos',
+            isPinned: false,
+            style: {
+                backgroundColor: '#f7f7a1'
+            },
+            info: {
+                label: 'My Todo List',
+                todos: [
+                    { txt: 'First task', doneAt: null },
+                    { txt: 'Second task', doneAt: null }
+                ]
+            }
+        }
+    
+        noteService.save(newNote)
+        setNoteToAdd(noteService.getEmptyNote())
+    }
+    
+
     return (
         <section className="add-note-container flex">
             <div className="input-wrapper">
@@ -66,20 +113,33 @@ export function AddNote() {
                     placeholder="Write a note..."
                 />
                 <div className="input-buttons">
-                    <button title="New list">
-                    <i className="fa-regular fa-square-check"></i>
+                    <button
+                        title="New list"
+                        onClick={onAddTodoNote}>
+                        <i className="fa-regular fa-square-check"></i>
                     </button>
+
                     <button title="New note with drawing">
-                    <i className="fa-solid fa-paintbrush"></i>
+                        <i className="fa-solid fa-paintbrush"></i>
                     </button>
-                    <button title="New note with image">
-                    <i className="fa-regular fa-image"></i>
+
+                    <button
+                        title="New note with image"
+                        onClick={() => fileInputRef.current.click()}
+                    >
+                        <i className="fa-regular fa-image"></i>
                     </button>
+
+                    <input
+                        ref={fileInputRef}
+                        type="file"
+                        accept="image/*"
+                        style={{ display: 'none' }}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
         </section>
-
-
     )
-
 }
+

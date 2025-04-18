@@ -8,6 +8,7 @@ const { useState, useEffect } = React
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
+    const [selectedNote, setSelectedNote] = useState(null)
 
     useEffect(() => {
         loadNotes()
@@ -21,6 +22,10 @@ export function NoteIndex() {
                 // showErrorMsg('Cannot get notes!')
             })
     }
+
+   function onSelectedNote(noteId) {
+    noteService.get(noteId).then(selectedNote)
+   }
 
     function onRemoveNote(noteId) {
         noteService.remove(noteId)
@@ -39,6 +44,7 @@ export function NoteIndex() {
 
     if (!notes) return <div>loading...</div>
     return (
+        
         <React.Fragment>
             <AddNote />
             <NoteList notes={notes} onRemoveNote={onRemoveNote}  />
