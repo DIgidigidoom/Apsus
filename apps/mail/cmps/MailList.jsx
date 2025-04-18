@@ -3,7 +3,7 @@ import { mailService } from "./../services/mail.service.js";
 const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function MailList({ mails, onRemoveMail }) {
+export function MailList({ mails, onRemoveMail, onToggleIsRead }) {
 
 
     function onSetIsRead(id) {
@@ -13,16 +13,6 @@ export function MailList({ mails, onRemoveMail }) {
                 mailService.save(mail)
             })
 
-    }
-
-    function onToggleIsRead(id, ev) {
-        ev.stopPropagation()
-        ev.preventDefault()
-        mailService.get(id)
-            .then(mail => {
-                mail.isRead = !mail.isRead
-                mailService.save(mail)
-            })
     }
 
     if (!mails.length) return <div>No Mails To Show...</div>
@@ -39,10 +29,19 @@ export function MailList({ mails, onRemoveMail }) {
                             <MailPreview mail={mail} />
                             <section className="mail-right-btns">
                                 <button onClick={(event) => onRemoveMail(mail.id, event)} className="btn remove-mail-list-btn fa-solid fa-trash"></button>
-                                <button
+                                {/* <button
                                     className={`btn toggle-read-list-btn fa-solid 
                                     ${!mail.isRead ? 'fa-envelope-open' : 'fa-envelope'}`}
                                     onClick={(e) => {onToggleIsRead(mail.id,e)}}>
+                                </button> */}
+                                <button
+                                    className="btn toggle-read-list-btn"
+                                    onClick={(e) => { onToggleIsRead(mail.id, e) }}
+                                    aria-label={mail.isRead ? 'Mark as unread' : 'Mark as read'} // For screen readers
+                                ><i
+                                    className={`fa-solid ${!mail.isRead ? 'fa-envelope-open' : 'fa-envelope'}`}
+                                    aria-hidden="true"
+                                ></i>
                                 </button>
                             </section>
 
