@@ -12,3 +12,30 @@
     padding: 5px;
     margin: 10px;
 }
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper input {
+    padding-right: 80px; /* מקום לכפתורים */
+    height: 40px;
+    font-size: 16px;
+    flex: 1;
+}
+
+.input-buttons {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.input-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}

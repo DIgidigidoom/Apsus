@@ -1,13 +1,21 @@
 import { storageService } from '../../../services/async-storage.service.js'
 import { utilService } from '../../../services/util.service.js'
 
+export const noteService = {
+    query,
+    get,
+    remove,
+    save,
+    getEmptyNote
+}
 const NOTE_KEY = 'noteDB'
+
 const demoNotes = [
     {
         id: 'n101',
         createdAt: 1112222,
         type: 'NoteTxt',
-        isPinned: true,
+        isPinned: false,
         style: {
             backgroundColor: '#00d'
         },
@@ -40,17 +48,47 @@ const demoNotes = [
                 { txt: 'Coding power', doneAt: 187111111 }
             ]
         }
-    }
+    },
+    {
+        id: 'n104',
+        createdAt: 1112225,
+        type: 'NoteTxt',
+        isPinned: false,
+        style: {
+            backgroundColor: '#00d'
+        },
+        info: {
+            txt: 'Fullstack Me Baby!'
+        }
+    },
+    {
+        id: 'n105',
+        createdAt: 1112224,
+        type: 'NoteTodos',
+        isPinned: false,
+        info: {
+            title: 'Get my stuff together',
+            todos: [
+                { txt: 'Driving license', doneAt: null },
+                { txt: 'Coding power', doneAt: 187111111 }
+            ]
+        }
+    },
+    {
+        id: 'n106',
+        createdAt: 1112223,
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            url: 'https://picsum.photos/100',
+            title: 'Shuki and Me'
+        },
+        style: {
+            backgroundColor: '#00d'
+        }
+    },
 ]
 _createNotes()
-
-export const noteService = {
-    query,
-    get,
-    remove,
-    save,
-    getEmptyNote
-}
 
 function query() {
     return storageService.query(NOTE_KEY)

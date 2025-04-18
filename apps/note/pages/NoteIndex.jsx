@@ -2,6 +2,7 @@ import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
 
+
 const { useState, useEffect } = React
 
 export function NoteIndex() {
@@ -34,7 +35,7 @@ export function NoteIndex() {
             // .finally(() => setIsLoading(false))
     }
 
-    console.log("notes: ", notes)
+    // console.log("notes: ", notes)
 
     if (!notes) return <div>loading...</div>
     return (
