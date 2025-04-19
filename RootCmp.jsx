@@ -29,7 +29,7 @@ export function App() {
                 { /* Mail Routes */}
                 <Route path="/mail/*" element={<MailIndex />}/>
                 <Route path="/mail/:mailId" element={<MailIndex />} /> 
-                <Route path="/mail/add" element={<AddMail />} />
+                {/* <Route path="/mail/add" element={<AddMail />} /> */}
 
                 {/* note Routes */}
                 <Route path="/note" element={<NoteIndex />} />

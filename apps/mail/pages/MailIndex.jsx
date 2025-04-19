@@ -1,3 +1,4 @@
+import { AddMail } from "../cmps/AddMail.jsx"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
 
@@ -12,7 +13,7 @@ var gUnreadMails = 0
 
 
 export function MailIndex() {
-
+    const [isComposing, setIsComposing] = useState(false)
     const [mails, setMails] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [triggerReload, setTriggerReload] = useState(false)
@@ -102,7 +103,7 @@ export function MailIndex() {
         setMailType(type)
     }
 
-    
+
 
 
 
@@ -115,6 +116,7 @@ export function MailIndex() {
                 <SideNav
                     unreadMails={gUnreadMails.length}
                     onSetType={onSetType}
+                    setIsComposing={setIsComposing}
                 />
                 <MailFilter
                     onSetFilterBy={onSetFilterBy}
@@ -128,7 +130,12 @@ export function MailIndex() {
                             onToggleIsRead={onToggleIsRead}
                         />}
                 </div>
-                {/* mails ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>Loading...</div> */}
+                {isComposing && (
+                    <AddMail
+                        setIsComposing={() => setIsComposing(false)}
+                    // onSend={onSendMail}
+                    />
+                )}
 
             </section>
         </React.Fragment>
