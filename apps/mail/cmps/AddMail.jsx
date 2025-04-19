@@ -40,6 +40,22 @@ export function AddMail() {
         onBack()
 
     }
+    function onDraftMail(ev){
+        const draftMail = {
+            createdAt: Date.now(),
+            subject: mailToAdd.subject,
+            body: mailToAdd.body,
+            isRead: false,
+            sentAt: null,
+            removedAt: null,
+            from: 'Tomshahar91@gmail.com',
+            to: mailToAdd.to,
+            type :'draft'
+        }
+        console.log("draftMail: ", draftMail)
+        mailService.save(draftMail)
+        onBack()
+    }
     function onBack() {
         navigate('/mail')
     }
@@ -49,13 +65,12 @@ export function AddMail() {
             <form onSubmit={onAddMail}>
                 <label htmlFor="txt">Subject</label>
                 <input onChange={handleChange} value={mailToAdd.subject} name="subject" id="subject" type="text" />
-
                 <label htmlFor="txt">Body</label>
-
                 <input onChange={handleChange} value={mailToAdd.body} name="body" id="body" type="text" />
                 <label htmlFor="txt">To:</label>
                 <input onChange={handleChange} value={mailToAdd.to} name="to" id="yo" type="text" />
-                <button className="btn book-filter-btn">Submit</button>
+                <button className="btn submit-mail-btn">Submit</button>
+                <button className="btn back-from-add-btn" onClick={()=>onDraftMail()}>Back</button>
             </form>
         </section>
     )

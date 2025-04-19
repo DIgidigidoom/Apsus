@@ -33,7 +33,7 @@ export function MailPreview({ mail, onFormatDate }) {
     }
 
     function onSetFromOrTo(){
-       return mail.type === 'sent' ? mail.to : mail.from
+       return (mail.type === 'sent' ||mail.type === 'draft') ? mail.to : mail.from
     }
 
     return (
