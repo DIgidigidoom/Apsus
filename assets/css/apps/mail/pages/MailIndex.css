@@ -3,7 +3,7 @@
     display: grid;
     grid-template-areas:
        "mail-filter mail-filter"
-       "side-nav mail-list";
+       "side-nav main-mail-container";
     color: var(--dark-txt-color);
     grid-template-columns: 256px 1fr;
     grid-template-rows: auto 1fr;
@@ -40,6 +40,13 @@
     left: 0;
     top: 142px;
     z-index: 100;
+ }
+
+ .main-mail-container {
+   grid-area: main-mail-container;
+   background-color: transparent;
+   height: fit-content;
+   overflow-x: hidden;
  }
 
  .mail-list-container {

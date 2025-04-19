@@ -1,11 +1,12 @@
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
+import { MailSection } from "../cmps/MailSections.jsx"
 import { SideNav } from "../cmps/SideNav.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailDetails } from "./MailDetails.jsx"
 
 const { useState, useEffect } = React
-const { useSearchParams } = ReactRouterDOM
+const { useSearchParams, Outlet, useParams } = ReactRouterDOM
 
 var gUnreadMails = 0
 
@@ -13,16 +14,19 @@ var gUnreadMails = 0
 export function MailIndex() {
 
     const [mails, setMails] = useState(null)
-    const [selectedMailId, setSelectedMailId] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [triggerReload, setTriggerReload] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter)
     const [mailType, setMailType] = useState('inbox')
+    const params = useParams('')
+    console.log('mailId from useParams:', params.mailId)
+
+
 
     useEffect(() => {
         _countUnread()
         LoadMails()
-    }, [filterBy, triggerReload, mailType])
+    }, [filterBy, triggerReload, mailType, params.mailId])
 
     function _countUnread() {
 
@@ -111,13 +115,17 @@ export function MailIndex() {
                 <MailFilter
                     onSetFilterBy={onSetFilterBy}
                     filterBy={filterBy} />
-
-                <MailList
-
-                    mails={mails}
-                    onRemoveMail={onRemoveMail}
-                    onToggleIsRead={onToggleIsRead} />
+                <div className="main-mail-container">
+                    {params.mailId
+                        ? <MailDetails mailId={params.mailId} />
+                        : <MailList
+                            mails={mails}
+                            onRemoveMail={onRemoveMail}
+                            onToggleIsRead={onToggleIsRead}
+                        />}
+                </div>
                 {/* mails ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>Loading...</div> */}
+
             </section>
         </React.Fragment>
 

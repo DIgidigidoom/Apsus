@@ -10,7 +10,7 @@ export function MailDetails() {
 
     const navigate = useNavigate()
     const params = useParams()
-    console.log(params.mailId)
+    
 
     useEffect(() => {
         loadMail()
