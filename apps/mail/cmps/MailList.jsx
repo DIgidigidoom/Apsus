@@ -3,7 +3,7 @@ import { mailService } from "./../services/mail.service.js";
 const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function MailList({ mails, onRemoveMail, onToggleIsRead, unreadMails }) {
+export function MailList({ mails, onRemoveMail, onToggleIsRead, onToggleIsStarred }) {
 
 
     function onSetIsRead(id) {
@@ -22,14 +22,19 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead, unreadMails }) {
                 <div className="list-tool-bar">
                     <button className="check-all-btn fa-regular fa-square"></button>
                     <button className="refresh-btn fa-solid fa-rotate-right"></button>
-                    <button  className="more-tool-bar-btn fa-solid fa-ellipsis-vertical"></button>
+                    <button className="more-tool-bar-btn fa-solid fa-ellipsis-vertical"></button>
                 </div>
                 {mails.map(mail => (
                     <Link key={mail.id} mail={mail} to={`/mail/${mail.id}`}>
                         <li className={!mail.isRead ? "not-read" : ""} onClick={() => onSetIsRead(mail.id)} >
                             <section className="mail-left-buttons">
                                 <button className="fa-regular fa-square"></button>
-                                <button className="fa-regular fa-star"></button>
+                                <button onClick={(e) => { onToggleIsStarred(mail.id, e) }}>
+                                    <i
+                                        className={`${!mail.isStarred ? 'fa-regular' : 'fa-solid'} fa-star `}
+                                        aria-hidden="true">
+                                    </i>
+                                </button>
                             </section>
                             <MailPreview mail={mail} />
                             <section className="mail-right-btns">

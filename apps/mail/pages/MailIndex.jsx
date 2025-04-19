@@ -1,28 +1,33 @@
+import { AddMail } from "../cmps/AddMail.jsx"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
+
 import { SideNav } from "../cmps/SideNav.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailDetails } from "./MailDetails.jsx"
 
 const { useState, useEffect } = React
-const { useSearchParams } = ReactRouterDOM
+const { useSearchParams, Outlet, useParams } = ReactRouterDOM
 
 var gUnreadMails = 0
 
 
 export function MailIndex() {
-
+    const [isComposing, setIsComposing] = useState(false)
     const [mails, setMails] = useState(null)
-    const [selectedMailId, setSelectedMailId] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [triggerReload, setTriggerReload] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter)
     const [mailType, setMailType] = useState('inbox')
+    const params = useParams()
+
+
+
 
     useEffect(() => {
         _countUnread()
         LoadMails()
-    }, [filterBy, triggerReload, mailType])
+    }, [filterBy, triggerReload, mailType, params.mailId])
 
     function _countUnread() {
 
@@ -35,17 +40,26 @@ export function MailIndex() {
     }
 
     function LoadMails() {
+        if(mailType !== 'starred'){
         mailService.query(filterBy)
             .then(allMails => {
                 const Mails = allMails.filter(mail => mail.type === mailType)
                 setMails(Mails)
-                // gUnreadMails = _countUnread(Mails)
-
+                
+            })
+            .catch(err => console.log('err:', err))
+    }else{
+        mailService.query(filterBy)
+            .then(allMails => {
+                const starredMails = allMails.filter(mail => mail.isStarred)
+                console.log(starredMails)
+                setMails(starredMails)
+               
             })
             .catch(err => console.log('err:', err))
     }
-
-
+}
+    
     function onRemoveMail(mailId, ev) {
         ev.preventDefault()
         ev.stopPropagation()
@@ -73,12 +87,29 @@ export function MailIndex() {
 
 
     }
+
     function onToggleIsRead(id, ev) {
         ev.stopPropagation()
         ev.preventDefault()
         mailService.get(id)
             .then(mail => {
                 mail.isRead = !mail.isRead
+                return mailService.save(mail)
+            })
+            .then(() => {
+                setTriggerReload(prev => !prev)
+            })
+            .catch(err => {
+                console.log('Problem toggling read :', err)
+            })
+    }
+
+    function onToggleIsStarred(id, ev) {
+        ev.stopPropagation()
+        ev.preventDefault()
+        mailService.get(id)
+            .then(mail => {
+                mail.isStarred = !mail.isStarred
                 return mailService.save(mail)
             })
             .then(() => {
@@ -99,6 +130,9 @@ export function MailIndex() {
 
 
 
+
+
+
     if (!mails) return <div className="loader">Loading...</div>
     const loadingClass = isLoading ? 'loading' : ''
     return (
@@ -107,17 +141,28 @@ export function MailIndex() {
                 <SideNav
                     unreadMails={gUnreadMails.length}
                     onSetType={onSetType}
+                    setIsComposing={setIsComposing}
                 />
                 <MailFilter
                     onSetFilterBy={onSetFilterBy}
                     filterBy={filterBy} />
+                <div className="main-mail-container">
+                    {params.mailId
+                        ? <MailDetails mailId={params.mailId} />
+                        : <MailList
+                            mails={mails}
+                            onRemoveMail={onRemoveMail}
+                            onToggleIsRead={onToggleIsRead}
+                            onToggleIsStarred={onToggleIsStarred}
+                        />}
+                </div>
+                {isComposing && (
+                    <AddMail
+                        setIsComposing={() => setIsComposing(false)}
+                    // onSend={onSendMail}
+                    />
+                )}
 
-                <MailList
-
-                    mails={mails}
-                    onRemoveMail={onRemoveMail}
-                    onToggleIsRead={onToggleIsRead} />
-                {/* mails ? <MailList mails={mails} onRemoveMail={onRemoveMail} /> : <div>Loading...</div> */}
             </section>
         </React.Fragment>
 

@@ -1,0 +1,100 @@
+.add-mail-container {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    width: 400px;
+    background: white;
+    min-height: 250px;
+    height: 50vh;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    
+}
+
+.add-mail-container form{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+}
+
+.add-mail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+    background-color: var(--mail-bg-color);
+    height: fit-content;
+    padding:5px;
+    margin: 0;
+}
+.add-mail-header>* {
+    margin: 0;
+}
+.add-mail-header button{
+    background-color: transparent;
+    border: none;
+
+}
+.add-mail-container input[type="text"] {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    border: none;
+    border-bottom: 1px solid var(--sepertor-color);
+    outline: none;
+    overflow-x: hidden;
+}
+
+.submit-mail-btn {
+    background-color: #0b57d0;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: fit-content;
+    border-radius: 20px;
+}
+.submit-mail-btn:hover {
+    background-color: #0a47b8;
+}
+
+.add-mail-container #body{
+    width: 100%;
+    min-height: 50px;
+    height: 70%;
+    font-size: 14px;
+    padding: 10px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    outline: none;
+    border: none;
+    resize: vertical;
+}
+.add-mail-btm-btns{
+    position: absolute;
+    top: 90%
+}
+
+
+
+.back-from-add-btn {
+    background-color: transparent;
+    color: #555;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: underline;
+    width: fit-content;
+}
