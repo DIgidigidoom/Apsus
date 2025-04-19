@@ -1,6 +1,6 @@
 footer {
     background: white;
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     right: 0;
@@ -10,10 +10,11 @@ footer {
 .app-footer {
     display: flex;
     flex-direction: column;
-    padding: 50px 0;
+    padding: 10px 0;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    /* margin-top: 40px; */
 }
 
 .links-container-footer {
