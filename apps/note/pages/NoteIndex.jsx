@@ -67,7 +67,7 @@ export function NoteIndex() {
     }
 
     return (
-        < React.Fragment >
+        < div className="note-container">
             <NoteHeader />
             <AddNote notes={notes} setNotes={setNotes} setIsLoading={setIsLoading }/>
             <NoteList
@@ -77,6 +77,6 @@ export function NoteIndex() {
                 setNotes={setNotes}
                 setIsLoading={setIsLoading } />
             <UserMsg />
-        </ React.Fragment >
+        </ div >
     )
 }

@@ -14,7 +14,7 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    /* margin-top: 40px; */
+    height: fit-content;
 }
 
 .links-container-footer {
@@ -26,9 +26,9 @@ footer {
 }
 
 
-nav  {
+/* nav  {
     margin: .5em;
-}
+} */
 
 nav :active {
     color: purple;
