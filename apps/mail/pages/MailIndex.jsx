@@ -40,17 +40,26 @@ export function MailIndex() {
     }
 
     function LoadMails() {
+        if(mailType !== 'starred'){
         mailService.query(filterBy)
             .then(allMails => {
                 const Mails = allMails.filter(mail => mail.type === mailType)
                 setMails(Mails)
-                // gUnreadMails = _countUnread(Mails)
-
+                
+            })
+            .catch(err => console.log('err:', err))
+    }else{
+        mailService.query(filterBy)
+            .then(allMails => {
+                const starredMails = allMails.filter(mail => mail.isStarred)
+                console.log(starredMails)
+                setMails(starredMails)
+               
             })
             .catch(err => console.log('err:', err))
     }
-
-
+}
+    
     function onRemoveMail(mailId, ev) {
         ev.preventDefault()
         ev.stopPropagation()
@@ -95,6 +104,22 @@ export function MailIndex() {
             })
     }
 
+    function onToggleIsStarred(id, ev) {
+        ev.stopPropagation()
+        ev.preventDefault()
+        mailService.get(id)
+            .then(mail => {
+                mail.isStarred = !mail.isStarred
+                return mailService.save(mail)
+            })
+            .then(() => {
+                setTriggerReload(prev => !prev)
+            })
+            .catch(err => {
+                console.log('Problem toggling read :', err)
+            })
+    }
+
     function onSetFilterBy(filterByToEdit) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterByToEdit }))
     }
@@ -128,6 +153,7 @@ export function MailIndex() {
                             mails={mails}
                             onRemoveMail={onRemoveMail}
                             onToggleIsRead={onToggleIsRead}
+                            onToggleIsStarred={onToggleIsStarred}
                         />}
                 </div>
                 {isComposing && (

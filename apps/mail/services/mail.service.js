@@ -43,7 +43,8 @@ function getEmptyMail() {
         removedAt: null,
         from: '',
         to: '',
-        type: null
+        type: null,
+        isStarred:false,
     }
 }
 
@@ -72,6 +73,7 @@ function _createMail(subject, body, sentAt, removedAt, from, to,type) {
         from,
         to,
         type,
+        isStarred:false,
 
     }
 
