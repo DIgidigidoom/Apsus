@@ -25,7 +25,7 @@
     align-items: center;
     position: fixed;
     left: 0;
-    top: 65px;
+    top: 0;
     z-index: 100;
     overflow-x: hidden;
     background-color: var(--mail-bg-color);

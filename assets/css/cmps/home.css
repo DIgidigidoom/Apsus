@@ -1,0 +1,33 @@
+
+
+.icons-nav-container {
+    display: grid;
+    grid-template-columns: minmax(40 1fr) minmax(720 auto) minmax(40 1fr);
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+}
+
+.icons-nav-container>* {
+    grid-row: 2;
+}
+
+.icons-nav-container img {
+    cursor: pointer;
+    height: auto;
+    object-fit: contain;
+}
+
+.icons-nav-container img:hover {
+   transform: scale(1.02);
+}
+
+
+.note-logo-home {
+    width: 210px;
+}
+
+.mail-logo-home {
+    width: 300px;
+}

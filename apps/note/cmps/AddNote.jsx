@@ -47,7 +47,7 @@ export function AddNote( { notes, setNotes, setIsLoading  } ) {
             type: 'NoteTxt',
             isPinned: false,
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: '#fff'
             },
             info: {
                 txt: noteToAdd.info.txt
@@ -70,7 +70,7 @@ export function AddNote( { notes, setNotes, setIsLoading  } ) {
             type: 'NoteImg',
             isPinned: false,
             style: {
-                backgroundColor: '#00d'
+                backgroundColor: '#fff'
             },
             info: {
                 url: imageUrl,
@@ -94,7 +94,7 @@ export function AddNote( { notes, setNotes, setIsLoading  } ) {
             type: 'NoteTodos',
             isPinned: false,
             style: {
-                backgroundColor: '#f7f7a1'
+                backgroundColor: '#fff'
             },
             info: {
                 label: 'My Todo List',

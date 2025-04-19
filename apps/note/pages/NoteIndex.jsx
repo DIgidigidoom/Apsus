@@ -14,6 +14,7 @@ export function NoteIndex() {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
+        console.log(notes)
         setIsLoading(true)
         loadNotes()
         setIsLoading(false)
