@@ -3,6 +3,7 @@ import { NoteHeader } from "../cmps/NoteHeader.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
 import { showSuccessMsg } from "../../../services/event-bus.service.js"
+import { UserMsg } from "../../../cmps/UserMsg.jsx"
 
 
 const { useState, useEffect } = React
@@ -10,9 +11,12 @@ const { useState, useEffect } = React
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
+        setIsLoading(true)
         loadNotes()
+        setIsLoading(false)
     }, [notes])
 
     function loadNotes() {
@@ -25,6 +29,8 @@ export function NoteIndex() {
     }
 
     function onRemoveNote(noteId) {
+        setIsLoading(true)
+
         noteService.remove(noteId)
             .then(() => {
                 setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
@@ -34,10 +40,12 @@ export function NoteIndex() {
                 console.log('Problem removing note:', err)
                 showErrorMsg('Problem removing note!')
             })
-        // .finally(() => setIsLoading(false))
+        .finally(() => setIsLoading(false))
     }
 
     function onUpdateNote(updatedNote) {
+        setIsLoading(true)
+
         noteService.save(updatedNote).then(savedNote => {
             setNotes(prevNotes =>
                 prevNotes.map(note =>
@@ -46,22 +54,29 @@ export function NoteIndex() {
             )
         })
     }
-    
+
 
     // console.log("notes: ", notes)
 
-    if (!notes) return <div>loading...</div>
+    if (!notes || isLoading) {
+        return (
+            <div className="loading-spinner">
+                <p>Loading...</p>
+            </div>
+        )
+    }
+
     return (
-        <React.Fragment>
+        < React.Fragment >
             <NoteHeader />
-            <AddNote notes={notes} setNotes={setNotes}/>
-            {/* // component pinnotes */}
-            {/* is pined && <pinnotes> recives all notes and show only the pinned  */}
-            <NoteList 
-            notes={notes} 
-            onRemoveNote={onRemoveNote} 
-            onUpdateNote={onUpdateNote}
-            setNotes={setNotes}/>
-        </React.Fragment>
+            <AddNote notes={notes} setNotes={setNotes} setIsLoading={setIsLoading }/>
+            <NoteList
+                notes={notes}
+                onRemoveNote={onRemoveNote}
+                onUpdateNote={onUpdateNote}
+                setNotes={setNotes}
+                setIsLoading={setIsLoading } />
+            <UserMsg />
+        </ React.Fragment >
     )
 }

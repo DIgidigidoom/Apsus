@@ -8,7 +8,7 @@ export function NoteHeader() {
 
 
             <div className="search-input-container">
-                <i className="fa-solid fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass search-mark"></i>
                 <input className="note-search-input" type="text" placeholder="Search" />
                 <i className="fa-solid fa-xmark"></i>
             </div>

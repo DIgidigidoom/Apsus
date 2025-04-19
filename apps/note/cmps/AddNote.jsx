@@ -6,7 +6,7 @@ import { showSuccessMsg } from "../../../services/event-bus.service.js"
 const { useState, useRef } = React
 const { Link, useNavigate } = ReactRouterDOM
 
-export function AddNote( { notes, setNotes } ) {
+export function AddNote( { notes, setNotes, setIsLoading  } ) {
 
     const navigate = useNavigate()
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
@@ -39,6 +39,8 @@ export function AddNote( { notes, setNotes } ) {
     }
 
     function onAddTextNote() {
+        setIsLoading(true)
+
         const newNote = {
             id: null,
             createdAt: Date.now(),
@@ -55,9 +57,13 @@ export function AddNote( { notes, setNotes } ) {
         setNotes(prevNotes => [ noteService.save(newNote), ...prevNotes])
         setNoteToAdd(noteService.getEmptyNote())
         showSuccessMsg('Note added successfully')
+
+        setIsLoading(false)
     }
 
     function onAddImageNote(imageUrl) {
+        setIsLoading(true)
+
         const newNote = {
             id: null,
             createdAt: Date.now(),
@@ -75,9 +81,13 @@ export function AddNote( { notes, setNotes } ) {
         setNotes(prevNotes => [ noteService.save(newNote), ...prevNotes])
         setNoteToAdd(noteService.getEmptyNote())
         showSuccessMsg('Note added successfully')
+
+        setIsLoading(false)
     }
 
     function onAddTodoNote() {
+        setIsLoading(true)
+
         const newNote = {
             id: null,
             createdAt: Date.now(),
@@ -99,6 +109,8 @@ export function AddNote( { notes, setNotes } ) {
         setNotes(prevNotes => [ noteService.save(newNote), ...prevNotes])
         setNoteToAdd(noteService.getEmptyNote())
         showSuccessMsg('Note added successfully')
+
+        setIsLoading(false)
     }
 
 
@@ -124,7 +136,7 @@ export function AddNote( { notes, setNotes } ) {
                     <button
                         title="New list"
                         onClick={onAddTodoNote}>
-                        <i className="fa-regular fa-square-check"></i>
+                        <i className="fa-regular fa-square-check check-mark"></i>
                     </button>
 
                     <button title="New note with drawing">

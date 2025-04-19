@@ -8,11 +8,13 @@ import { Home } from "./pages/Home.jsx"
 ////////////////////////Mail Imports//////////////////////////////////////////
 import { MailIndex } from "./apps/mail/pages/MailIndex.jsx"
 import { MailDetails } from "./apps/mail/pages/MailDetails.jsx"
+import { AddMail } from "./apps/mail/cmps/AddMail.jsx"
 
 //////////////////////Note Imports//////////////////////////////////////////////
 import { NoteIndex } from "./apps/note/pages/NoteIndex.jsx"
 import { NoteDetails } from "./apps/note/pages/NoteDetails.jsx"
-import { AddMail } from "./apps/mail/cmps/AddMail.jsx"
+
+
 
 
 
@@ -32,7 +34,6 @@ export function App() {
                 {/* note Routes */}
                 <Route path="/note" element={<NoteIndex />} />
                 <Route path="/note/details" element={<NoteDetails />} />
-
             </Routes>
         </section>
     </Router>

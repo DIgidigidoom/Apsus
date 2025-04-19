@@ -1,7 +1,9 @@
 import { NotePreview } from "./NotePreview.jsx";
 import { NoteModal } from "./NoteModal.jsx";
 import { noteService } from "../services/note.service.js";
-import { showSuccessMsg } from "../../../services/event-bus.service.js"
+import { showSuccessMsg } from "../../../services/event-bus.service.js";
+import { ColorPicker } from './ColorPicker.jsx';
+
 
 const { useState } = React
 const { Link } = ReactRouterDOM
@@ -25,10 +27,10 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
                 )
             )
             setSelectedNote(null)
-            showSuccessMsg('Note saved successfully') 
+            showSuccessMsg('Note saved successfully')
         })
     }
-    
+
 
     function handleCloseModal() {
         setSelectedNote(null)
@@ -37,18 +39,37 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
     return (
         <div className="note-list-container flex">
             {notes.map(note => (
-                <section className="note-preview" key={note.id} onClick={() => handleNoteClick(note)}>
-                    <NotePreview note={note}
-                      onUpdateNote={onUpdateNote} />
+                <section
+                    className="note-preview"
+                    key={note.id}
+                    style={{ backgroundColor: (note.style && note.style.backgroundColor) || '#fff' }}
+                    onClick={() => handleNoteClick(note)}>
+
+                    <NotePreview
+                        note={note}
+                        onUpdateNote={onUpdateNote} />
+
+                    <ColorPicker
+                        note={note}
+                        onChangeColor={(note, color) => {
+                            const updatedNote = {
+                                ...note,
+                                style: { ...note.style, backgroundColor: color }
+                            }
+                            onUpdateNote(updatedNote)
+                        }}
+                    />
+
                     <button className="btn remove-note-btn" onClick={(ev) => {
                         ev.stopPropagation()
                         onRemoveNote(note.id)
                     }}>
                         <i className="fa-solid fa-trash"></i>
                     </button>
+                    
                     <button className="btn note-details-btn" onClick={(ev) => ev.stopPropagation()} >
                         <Link to={`/note/details/`}>
-                        <i className="fa-solid fa-pen-to-square"></i>
+                            <i className="fa-solid fa-pen-to-square"></i>
                         </Link>
                     </button>
                 </section>

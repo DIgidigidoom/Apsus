@@ -17,7 +17,7 @@ const demoNotes = [
         type: 'NoteTxt',
         isPinned: false,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#fff'
         },
         info: {
             txt: 'Fullstack Me Baby!'
@@ -33,7 +33,7 @@ const demoNotes = [
             title: 'Bobi and Me'
         },
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#fff'
         }
     },
     {
@@ -47,6 +47,9 @@ const demoNotes = [
                 { txt: 'Driving license', doneAt: null },
                 { txt: 'Coding power', doneAt: 187111111 }
             ]
+        },
+        style: {
+            backgroundColor: '#fff'
         }
     },
     {
@@ -55,7 +58,7 @@ const demoNotes = [
         type: 'NoteTxt',
         isPinned: false,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#fff'
         },
         info: {
             txt: 'Fullstack Me Baby!'
@@ -72,6 +75,9 @@ const demoNotes = [
                 { txt: 'Driving license', doneAt: null },
                 { txt: 'Coding power', doneAt: 187111111 }
             ]
+        },
+        style: {
+            backgroundColor: '#fff'
         }
     },
     {
@@ -84,7 +90,7 @@ const demoNotes = [
             title: 'Shuki and Me'
         },
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#fff'
         }
     },
 ]
