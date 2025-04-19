@@ -2,7 +2,7 @@ import { NoteImg } from "./NoteImg.jsx"
 import { NoteTodos } from "./NotesTodos.jsx"
 import { NoteTxt } from "./NoteTxt.jsx"
 
-export function NotePreview({ note }) {
+export function NotePreview({ note, onUpdateNote }) {
     const { type, info } = note
 
     const componentMap = {
@@ -14,7 +14,7 @@ export function NotePreview({ note }) {
 
     return (
         <article className="note-info">
-            <DynamicCmp info={info} />
+            <DynamicCmp info={info} type={note.type} onUpdateNote={onUpdateNote} note={note}/>
         </article>
     )
 }

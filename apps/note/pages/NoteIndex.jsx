@@ -2,6 +2,7 @@ import { AddNote } from "../cmps/AddNote.jsx"
 import { NoteHeader } from "../cmps/NoteHeader.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { noteService } from "../services/note.service.js"
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 
 const { useState, useEffect } = React
@@ -27,14 +28,25 @@ export function NoteIndex() {
         noteService.remove(noteId)
             .then(() => {
                 setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
-                // showSuccessMsg(`Note (${noteId}) removed successfully!`)
+                showSuccessMsg('Note deleted 🗑️')
             })
             .catch(err => {
                 console.log('Problem removing note:', err)
-                // showErrorMsg('Problem removing note!')
+                showErrorMsg('Problem removing note!')
             })
         // .finally(() => setIsLoading(false))
     }
+
+    function onUpdateNote(updatedNote) {
+        noteService.save(updatedNote).then(savedNote => {
+            setNotes(prevNotes =>
+                prevNotes.map(note =>
+                    note.id === savedNote.id ? savedNote : note
+                )
+            )
+        })
+    }
+    
 
     // console.log("notes: ", notes)
 
@@ -42,10 +54,14 @@ export function NoteIndex() {
     return (
         <React.Fragment>
             <NoteHeader />
-            <AddNote />
+            <AddNote notes={notes} setNotes={setNotes}/>
             {/* // component pinnotes */}
             {/* is pined && <pinnotes> recives all notes and show only the pinned  */}
-            <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+            <NoteList 
+            notes={notes} 
+            onRemoveNote={onRemoveNote} 
+            onUpdateNote={onUpdateNote}
+            setNotes={setNotes}/>
         </React.Fragment>
     )
 }

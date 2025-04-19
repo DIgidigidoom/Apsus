@@ -1,10 +1,12 @@
 
 import { noteService } from "../services/note.service.js"
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
+
 
 const { useState, useRef } = React
 const { Link, useNavigate } = ReactRouterDOM
 
-export function AddNote() {
+export function AddNote( { notes, setNotes } ) {
 
     const navigate = useNavigate()
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
@@ -50,7 +52,9 @@ export function AddNote() {
             }
         }
         noteService.save(newNote)
+        setNotes(prevNotes => [ noteService.save(newNote), ...prevNotes])
         setNoteToAdd(noteService.getEmptyNote())
+        showSuccessMsg('Note added successfully')
     }
 
     function onAddImageNote(imageUrl) {
@@ -68,7 +72,9 @@ export function AddNote() {
             }
         }
         noteService.save(newNote)
+        setNotes(prevNotes => [ noteService.save(newNote), ...prevNotes])
         setNoteToAdd(noteService.getEmptyNote())
+        showSuccessMsg('Note added successfully')
     }
 
     function onAddTodoNote() {
@@ -90,7 +96,9 @@ export function AddNote() {
         }
 
         noteService.save(newNote)
+        setNotes(prevNotes => [ noteService.save(newNote), ...prevNotes])
         setNoteToAdd(noteService.getEmptyNote())
+        showSuccessMsg('Note added successfully')
     }
 
 

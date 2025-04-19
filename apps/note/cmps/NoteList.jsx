@@ -1,11 +1,12 @@
 import { NotePreview } from "./NotePreview.jsx";
 import { NoteModal } from "./NoteModal.jsx";
 import { noteService } from "../services/note.service.js";
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 
 const { useState } = React
 const { Link } = ReactRouterDOM
 
-export function NoteList({ notes, onRemoveNote }) {
+export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
     const [selectedNote, setSelectedNote] = useState(null)
 
     function handleNoteClick(note) {
@@ -17,9 +18,17 @@ export function NoteList({ notes, onRemoveNote }) {
     }
 
     function handleSaveNote(noteToSave) {
-        noteService.save(noteToSave)
-        setSelectedNote(null)
+        noteService.save(noteToSave).then((savedNote) => {
+            setNotes((prevNotes) =>
+                prevNotes.map((note) =>
+                    note.id === savedNote.id ? savedNote : note
+                )
+            )
+            setSelectedNote(null)
+            showSuccessMsg('Note saved successfully') 
+        })
     }
+    
 
     function handleCloseModal() {
         setSelectedNote(null)
@@ -29,7 +38,8 @@ export function NoteList({ notes, onRemoveNote }) {
         <div className="note-list-container flex">
             {notes.map(note => (
                 <section className="note-preview" key={note.id} onClick={() => handleNoteClick(note)}>
-                    <NotePreview note={note} />
+                    <NotePreview note={note}
+                      onUpdateNote={onUpdateNote} />
                     <button className="btn remove-note-btn" onClick={(ev) => {
                         ev.stopPropagation()
                         onRemoveNote(note.id)
