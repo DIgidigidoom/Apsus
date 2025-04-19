@@ -1,7 +1,11 @@
 export function NoteHeader() {
     return (
         <section className="note-header flex">
-            <img className="note-logo-img" src="assets/img/note-logo.png" alt="" />
+            <div className="logo-container flex">
+                <img className="note-logo-img" src="assets/img/note-logo.png" alt="" />
+                <p className="note-logo-txt">Keep</p>
+            </div>
+
 
             <div className="search-input-container">
                 <i className="fa-solid fa-magnifying-glass"></i>

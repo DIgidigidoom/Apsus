@@ -5,6 +5,9 @@
 .note-logo-img {
     width: 30px;
 }
+.note-logo-txt {
+    color: gray;
+}
 
 .note-search-input {
     margin: auto;
