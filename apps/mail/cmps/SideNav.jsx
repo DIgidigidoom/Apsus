@@ -5,7 +5,7 @@ export function SideNav({ unreadMails, onSetType }) {
 
     return (
         <div className="side-nav-container">
-            <img className="mail-logo" src="assets/img/gmailLogo.png" alt="" />
+            
             <button className="btn add-mail-btn">
                 <Link to={`/mail/add/`}><i className="fa-solid fa-pencil"></i> Compose </Link>
             </button>
