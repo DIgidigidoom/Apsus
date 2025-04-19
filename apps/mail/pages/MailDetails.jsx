@@ -6,10 +6,10 @@ const { useState, useEffect } = React
 
 
 export function MailDetails() {
-    const [mail, setMail] = useState(null)
-
-    const navigate = useNavigate()
     const params = useParams()
+    const [mail, setMail] = useState(null)
+    const navigate = useNavigate()
+
 
 
     useEffect(() => {
@@ -31,15 +31,7 @@ export function MailDetails() {
                 console.log('Problem removing mail:', err)
             })
     }
-    // function onFormatDate() {
-    //     const sent = new Date(mail.sentAt)
-    //     const day = String(sent.getDate()).padStart(2, '0');
-    //     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    //         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    //     const month = monthNames[sent.getMonth()]
-    //     const formattedDate = `${month} ${day}`
-    //     return formattedDate
-    // }
+
     function onFormatDate() {
         const sent = new Date(mail.sentAt)
         const now = new Date()
@@ -73,25 +65,28 @@ export function MailDetails() {
         navigate('/mail')
     }
     if (!mail) return <div>Loading...</div>
-    return (
-        <React.Fragment>
-            <div className="mail-details-container">
-                <section className="mail-details-btns-container">
-                    <button className="btn back-btn-details fa-solid fa-arrow-left" onClick={onBack}></button>
-                    <button className="btn remove-mail-details-btn fa-solid fa-trash" onClick={() => onRemoveMail(mail.id)}></button>
-                </section>
-                <section className="mail-details-txt-container">
-                    <h1 className="mail-subject">{mail.subject}</h1>
-                    <p className="mail-from">{mail.from}</p>
-                    <p className="mail-to">to {mail.to}</p>
-                    <p className="mail-body"> {mail.body}</p>
-                </section>
-                <section className="mail-details-right-side">
-                    <p className="mail-sent-at">{onFormatDate()}</p>
-                    <button className="fa-regular fa-star"></button>
-                </section>
 
-            </div>
-        </React.Fragment>
-    )
-}
+    
+        return (
+            <React.Fragment>
+
+                <div className="mail-details-container">
+                    <section className="mail-details-btns-container">
+                        <button className="btn back-btn-details fa-solid fa-arrow-left" onClick={onBack}></button>
+                        <button className="btn remove-mail-details-btn fa-solid fa-trash" onClick={() => onRemoveMail(mail.id)}></button>
+                    </section>
+                    <section className="mail-details-txt-container">
+                        <h1 className="mail-subject">{mail.subject}</h1>
+                        <p className="mail-from">{mail.from}</p>
+                        <p className="mail-to">to {mail.to}</p>
+                        <p className="mail-body"> {mail.body}</p>
+                    </section>
+                    <section className="mail-details-right-side">
+                        <p className="mail-sent-at">{onFormatDate()}</p>
+                        <button className="fa-regular fa-star"></button>
+                    </section>
+
+                </div>
+            </React.Fragment>
+        )
+    } 
