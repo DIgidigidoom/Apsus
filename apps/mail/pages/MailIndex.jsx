@@ -1,6 +1,6 @@
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
-import { MailSection } from "../cmps/MailSections.jsx"
+
 import { SideNav } from "../cmps/SideNav.jsx"
 import { mailService } from "../services/mail.service.js"
 import { MailDetails } from "./MailDetails.jsx"
@@ -18,8 +18,8 @@ export function MailIndex() {
     const [triggerReload, setTriggerReload] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter)
     const [mailType, setMailType] = useState('inbox')
-    const params = useParams('')
-    console.log('mailId from useParams:', params.mailId)
+    const params = useParams()
+
 
 
 
@@ -77,6 +77,7 @@ export function MailIndex() {
 
 
     }
+
     function onToggleIsRead(id, ev) {
         ev.stopPropagation()
         ev.preventDefault()
@@ -100,6 +101,9 @@ export function MailIndex() {
     function onSetType(type) {
         setMailType(type)
     }
+
+    
+
 
 
 

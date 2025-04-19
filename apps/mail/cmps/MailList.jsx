@@ -3,7 +3,7 @@ import { mailService } from "./../services/mail.service.js";
 const { Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function MailList({ mails, onRemoveMail, onToggleIsRead, unreadMails }) {
+export function MailList({ mails, onRemoveMail, onToggleIsRead,}) {
 
 
     function onSetIsRead(id) {
@@ -22,7 +22,7 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead, unreadMails }) {
                 <div className="list-tool-bar">
                     <button className="check-all-btn fa-regular fa-square"></button>
                     <button className="refresh-btn fa-solid fa-rotate-right"></button>
-                    <button  className="more-tool-bar-btn fa-solid fa-ellipsis-vertical"></button>
+                    <button className="more-tool-bar-btn fa-solid fa-ellipsis-vertical"></button>
                 </div>
                 {mails.map(mail => (
                     <Link key={mail.id} mail={mail} to={`/mail/${mail.id}`}>
