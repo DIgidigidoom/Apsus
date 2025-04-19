@@ -32,9 +32,13 @@ export function MailPreview({ mail, onFormatDate }) {
         return `${day}/${month}/${year}`
     }
 
+    function onSetFromOrTo(){
+       return mail.type === 'sent' ? mail.to : mail.from
+    }
+
     return (
         <div className="mail-preview-container">
-            <p className="mail-from">{mail.from}</p>
+            <p className="mail-from">{onSetFromOrTo()}</p>
             <p className="mail-subject">{mail.subject}</p>
             <p className="mail-body">- {mail.body}</p>
             <p className="mail-recieve-time"> {onFormatDate()}</p>
