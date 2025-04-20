@@ -15,7 +15,7 @@ export function About() {
 
             <div className="team-cards">
 
-                <div className="team-member-card">
+                <div className="team-member-card tom">
                     <img className="about-img" src="assets/img/Tom-photo.jpg" alt="Tom's photo" />
                     <h3>Tom Shahar</h3>
                     <p>
@@ -24,7 +24,7 @@ export function About() {
                     </p>
                 </div>
 
-                <div className="team-member-card">
+                <div className="team-member-card hadar">
                     <img className="about-img" src="assets/img/Hadar-photo.jpg" alt="Hadar's photo" />
                     <h3>Hadar Sabag</h3>
                     <p>
