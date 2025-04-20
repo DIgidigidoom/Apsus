@@ -12,31 +12,55 @@ const { useState, useEffect } = React
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
+
     const [isLoading, setIsLoading] = useState(false)
     const [loadingNoteId, setLoadingNoteId] = useState(null)
+
     const [filterByType, setFilterByType] = useState('all')
+    const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
         loadNotes()
-    }, [filterByType])
+    }, [filterByType, searchTerm])
 
     function loadNotes() {
         noteService.query().then(fetchedNotes => {
             let filteredNotes = fetchedNotes
-
+    
             if (filterByType !== 'all') {
                 filteredNotes = filteredNotes.filter(note => note.type === filterByType)
             }
-
+    
+            if (searchTerm) {
+                const lowerSearch = searchTerm.toLowerCase()
+                filteredNotes = filteredNotes.filter(note => {
+                    const { type, info } = note
+    
+                    if (type === 'NoteTxt') {
+                        return info.txt && info.txt.toLowerCase().includes(lowerSearch)
+                    }
+    
+                    if (type === 'NoteImg') {
+                        return info.title && info.title.toLowerCase().includes(lowerSearch)
+                    }
+    
+                    if (type === 'NoteTodos') {
+                        return info.label && info.label.toLowerCase().includes(lowerSearch)
+                    }
+    
+                    return false
+                })
+            }
+    
             const prevNotesStr = JSON.stringify(notes)
             const newNotesStr = JSON.stringify(filteredNotes)
-
+    
             if (prevNotesStr !== newNotesStr) {
                 setNotes(filteredNotes)
             }
         })
     }
-
+    
 
 
     function onRemoveNote(noteId) {
@@ -65,10 +89,6 @@ export function NoteIndex() {
         })
     }
 
-
-
-    // console.log("notes: ", notes)
-
     if (!notes || isLoading) {
         return (
             <div className="loading-spinner">
@@ -79,8 +99,15 @@ export function NoteIndex() {
 
     return (
         < div className="note-container">
-            <NoteHeader filterByType={filterByType} onSetFilterType={setFilterByType} />
-            <AddNote notes={notes} setNotes={setNotes} setIsLoading={setIsLoading} />
+            <NoteHeader 
+            filterByType={filterByType} 
+            onSetFilterType={setFilterByType} 
+            searchTerm={searchTerm}
+            onSetSearchTerm={setSearchTerm}/>
+            <AddNote 
+            notes={notes} 
+            setNotes={setNotes} 
+            setIsLoading={setIsLoading} />
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}

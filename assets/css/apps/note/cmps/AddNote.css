@@ -12,6 +12,10 @@
     margin: 10px;
 }
 
+.add-note-container input:focus {
+    outline: none;
+}
+
 .input-wrapper {
     position: relative;
     display: flex;

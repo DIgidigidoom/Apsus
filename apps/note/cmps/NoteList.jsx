@@ -36,6 +36,14 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
         setSelectedNote(null)
     }
 
+    if (!notes.length) {
+        return (
+          <div className="no-notes-msg">
+            <p>No matching results.</p>
+          </div>
+        )
+      }
+
     return (
         <div className="note-list-container flex">
             {notes.map(note => (

@@ -29,3 +29,10 @@
     background-color: transparent;
     color: gray;
 }
+
+.no-notes-msg {
+    text-align: center;
+    padding: 2em;
+    color: #888;
+    font-size: 1.2rem;
+  }

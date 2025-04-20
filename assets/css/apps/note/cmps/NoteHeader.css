@@ -1,12 +1,27 @@
-
 .note-header {
-    align-items: center;
+    display: flex;
     justify-content: space-between;
-  }
+    align-items: flex-start;
+    padding: 1em;
+}
+
+.note-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.note-center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
 
 .note-logo-img {
     width: 30px;
 }
+
 .note-logo-txt {
     color: gray;
 }
@@ -18,13 +33,16 @@
     border: none;
     background-color: rgb(247, 243, 243);
 
-
     width: 100%;
     padding: 10px 35px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     font-size: 1rem;
 }
+
+.note-search-input:focus {
+    outline: none;
+    box-shadow: 0 1px 6px rgba(60, 64, 67, 0.3);
+    background-color: #fff;
+  }
 
 .search-input-container {
     position: relative;
@@ -42,6 +60,7 @@
     cursor: pointer;
     font-size: 1.1rem;
     padding: 5px;
+    color: #888;
 }
 
 .search-mark {
@@ -49,41 +68,43 @@
 }
 
 .fa-xmark {
-    right: 5px;
+    right: -50px;
 }
 
+.search-mark:hover {
+    color: #444;
+}
 
-  
-  .search-wrapper {
+.fa-xmark:hover {
+    color: #444;
+}
+
+.search-wrapper {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-  }
-  
-  /* .search-input-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-  } */
-  
-  .filter-buttons {
+}
+
+
+.filter-buttons {
     display: flex;
     gap: 0.5em;
     margin-top: 0.6em;
     padding-left: 1.8em;
-  }
-  
-  .filter-buttons button {
+}
+
+.filter-buttons button {
     background-color: transparent;
     border: none;
     padding: 0.4em 0.8em;
     border-radius: 20px;
     cursor: pointer;
+    color: gray;
     font-size: 0.9em;
     transition: background-color 0.2s ease;
-  }
-  
-  .filter-buttons button.active {
+}
+
+.filter-buttons button.active {
     background-color: #e0e0e0;
     font-weight: bold;
-  }
+}

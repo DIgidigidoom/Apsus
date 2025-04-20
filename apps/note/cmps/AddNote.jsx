@@ -115,7 +115,6 @@ export function AddNote({ notes, setNotes, setIsLoading }) {
                     name="txt"
                     value={noteToAdd.info.txt}
                     onChange={handleChange}
-                    onBlur={onAddNote}
                     onKeyDown={(ev) => {
                         if (ev.key === 'Enter') {
                             ev.preventDefault()
@@ -127,13 +126,15 @@ export function AddNote({ notes, setNotes, setIsLoading }) {
 
                 <div className="input-buttons">
                     <button
+                        title="New text note"
+                        onClick={onAddTextNote}>
+                        <i className="fa-solid fa-text-slash"></i>
+                    </button>
+
+                    <button
                         title="New list"
                         onClick={onAddTodoNote}>
                         <i className="fa-regular fa-square-check check-mark"></i>
-                    </button>
-
-                    <button title="New note with drawing">
-                        <i className="fa-solid fa-paintbrush"></i>
                     </button>
 
                     <button
