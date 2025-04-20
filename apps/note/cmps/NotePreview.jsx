@@ -10,7 +10,7 @@ export function NotePreview({ note, onUpdateNote }) {
         NoteImg,
         NoteTodos
     }
-    const DynamicCmp = componentMap[type] || (() => <p>Unknown type</p>)
+    const DynamicCmp = componentMap[type] || (() => <p>Write something...</p>)
 
     return (
         <article className="note-info">

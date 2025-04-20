@@ -39,7 +39,6 @@ export function AddNote( { notes, setNotes, setIsLoading  } ) {
     }
 
     function onAddTextNote() {
-        setIsLoading(true)
 
         const newNote = {
             id: null,
@@ -53,16 +52,13 @@ export function AddNote( { notes, setNotes, setIsLoading  } ) {
                 txt: noteToAdd.info.txt
             }
         }
-        noteService.save(newNote)
-        setNotes(prevNotes => [ noteService.save(newNote), ...prevNotes])
-        setNoteToAdd(noteService.getEmptyNote())
-        showSuccessMsg('Note added successfully')
-
-        setIsLoading(false)
+        noteService.save(newNote).then(savedNote => {
+            setNotes(prevNotes => [savedNote, ...prevNotes])
+            setNoteToAdd(noteService.getEmptyNote())
+        })
     }
 
     function onAddImageNote(imageUrl) {
-        setIsLoading(true)
 
         const newNote = {
             id: null,
@@ -77,16 +73,13 @@ export function AddNote( { notes, setNotes, setIsLoading  } ) {
                 title: ''
             }
         }
-        noteService.save(newNote)
-        setNotes(prevNotes => [ noteService.save(newNote), ...prevNotes])
-        setNoteToAdd(noteService.getEmptyNote())
-        showSuccessMsg('Note added successfully')
-
-        setIsLoading(false)
+        noteService.save(newNote).then(savedNote => {
+            setNotes(prevNotes => [savedNote, ...prevNotes])
+            setNoteToAdd(noteService.getEmptyNote())
+        })
     }
 
     function onAddTodoNote() {
-        setIsLoading(true)
 
         const newNote = {
             id: null,
@@ -105,12 +98,10 @@ export function AddNote( { notes, setNotes, setIsLoading  } ) {
             }
         }
 
-        noteService.save(newNote)
-        setNotes(prevNotes => [ noteService.save(newNote), ...prevNotes])
-        setNoteToAdd(noteService.getEmptyNote())
-        showSuccessMsg('Note added successfully')
-
-        setIsLoading(false)
+        noteService.save(newNote).then(savedNote => {
+            setNotes(prevNotes => [savedNote, ...prevNotes])
+            setNoteToAdd(noteService.getEmptyNote())
+        })
     }
 
 
