@@ -10,7 +10,7 @@ const { useState, useEffect } = React
 const { useSearchParams, Outlet, useParams } = ReactRouterDOM
 
 var gUnreadMails = 0
-
+//change to state
 
 export function MailIndex() {
     const [isComposing, setIsComposing] = useState(false)
@@ -27,7 +27,7 @@ export function MailIndex() {
     useEffect(() => {
         _countUnread()
         LoadMails()
-    }, [filterBy, triggerReload, mailType, params.mailId])
+    }, [filterBy, triggerReload, mailType, params.mailId, isComposing])
 
     function _countUnread() {
 
@@ -40,26 +40,27 @@ export function MailIndex() {
     }
 
     function LoadMails() {
-        if(mailType !== 'starred'){
-        mailService.query(filterBy)
-            .then(allMails => {
-                const Mails = allMails.filter(mail => mail.type === mailType)
-                setMails(Mails)
-                
-            })
-            .catch(err => console.log('err:', err))
-    }else{
-        mailService.query(filterBy)
-            .then(allMails => {
-                const starredMails = allMails.filter(mail => mail.isStarred)
-                console.log(starredMails)
-                setMails(starredMails)
-               
-            })
-            .catch(err => console.log('err:', err))
+        if (mailType !== 'starred') {
+            mailService.query(filterBy)
+                .then(allMails => {
+                    allMails.sort((a, b) => b.sentAt - a.sentAt)
+                    const Mails = allMails.filter(mail => mail.type === mailType)
+                    setMails(Mails)
+                    console.log("Allmails: ", allMails)
+                })
+                .catch(err => console.log('err:', err))
+        } else {
+            mailService.query(filterBy)
+                .then(allMails => {
+                    allMails.sort((a, b) => b.sentAt - a.sentAt)
+                    const starredMails = allMails.filter(mail => mail.isStarred)
+                    setMails(starredMails)
+
+                })
+                .catch(err => console.log('err:', err))
+        }
     }
-}
-    
+
     function onRemoveMail(mailId, ev) {
         ev.preventDefault()
         ev.stopPropagation()
@@ -158,7 +159,7 @@ export function MailIndex() {
                 </div>
                 {isComposing && (
                     <AddMail
-                        setIsComposing={() => setIsComposing(false)}
+                        setIsComposing={() => setIsComposing()}
                     // onSend={onSendMail}
                     />
                 )}

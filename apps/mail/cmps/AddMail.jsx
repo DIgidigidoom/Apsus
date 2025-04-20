@@ -29,32 +29,34 @@ export function AddMail({ setIsComposing }) {
             createdAt: Date.now(),
             subject: mailToAdd.subject,
             body: mailToAdd.body,
-            isRead: false,
+            isRead: true,
             sentAt: Date.now(),
             removedAt: null,
             from: 'Tomshahar91@gmail.com',
             to: mailToAdd.to,
             type: 'sent'
         }
-        mailService.save(newMail)
-        setIsComposing(false)
+        mailService.save(newMail).then(()=>setIsComposing(false))
+        
 
     }
     function onDraftMail(ev) {
+        ev.preventDefault()
         const draftMail = {
             createdAt: Date.now(),
             subject: mailToAdd.subject,
             body: mailToAdd.body,
-            isRead: false,
-            sentAt: null,
+            isRead: true,
+            sentAt: Date.now(),
             removedAt: null,
             from: 'Tomshahar91@gmail.com',
             to: mailToAdd.to,
             type: 'draft'
         }
         console.log("draftMail: ", draftMail)
-        mailService.save(draftMail)
-        onBack()
+        mailService.save(draftMail).then(()=>setIsComposing(false))
+       
+        
     }
     function onBack() {
         navigate('/mail')
@@ -63,7 +65,10 @@ export function AddMail({ setIsComposing }) {
         <section className="add-mail-container">
             <section className="add-mail-header">
                 <p>New Message</p>
-                <button className="btn close-add-btn fa-solid fa-x" onClick={setIsComposing}></button>
+                <button className="btn close-add-btn fa-solid fa-x" onClick={(ev) => {
+                    onDraftMail(ev)
+                }}>
+                </button>
             </section>
 
             <form onSubmit={onAddMail}>
@@ -81,7 +86,7 @@ export function AddMail({ setIsComposing }) {
                 />
                 <section className="add-mail-btm-btns">
                     <button className="btn submit-mail-btn">Submit</button>
-                    <button className="btn back-from-add-btn" onClick={() => onDraftMail()}>Back</button>
+                    <button className="btn back-from-add-btn" onClick={(ev) => onDraftMail(ev)}>Back</button>
                 </section>
             </form>
         </section>
