@@ -50,7 +50,7 @@ export function AddNote({ notes, setNotes, setIsLoading }) {
                 backgroundColor: '#fff'
             },
             info: {
-                txt: noteToAdd.info.txt
+                txt: noteToAdd.info.txt || 'Empty note'
             }
         }
         noteService.save(newNote).then(savedNote => {

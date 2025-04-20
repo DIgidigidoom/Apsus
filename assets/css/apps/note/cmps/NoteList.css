@@ -1,10 +1,4 @@
-.note-list-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    justify-content: center;
-    padding: 1em;
-}
+
 
 .color-picker {
     display: flex;
@@ -24,12 +18,24 @@
 .note-actions-container {
     display: flex;
     justify-content: center;
+    opacity: 0;
+    transition: 0.2s ease-in-out ;
+}
+
+.note-preview:hover .note-actions-container {
+    opacity: 1;
+
 }
 
 .remove-note-btn {
     border: none;
     background-color: transparent;
     color: gray;
+    font-size: 1.05em;
+}
+
+.remove-note-btn:hover {
+    color: black;
 }
 
 .no-notes-msg {
@@ -41,16 +47,25 @@
 
 .pin-note-btn {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 0;
+    right: 0;
     background: transparent;
     border: none;
     cursor: pointer;
     color: gray;
+    font-size: 1.1em;
 
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     padding: 6px;
     transition: background-color 0.2s ease;
+    opacity: 0;
+    transition: 0.2s ease-in-out ;
+}
+
+.note-preview:hover .pin-note-btn {
+    opacity: 1;
 }
 
 .pin-note-btn:hover {
@@ -73,18 +88,28 @@
     transition: color 0.2s ease;
 }
 
+.note-preview.pinned .pin-note-btn {
+    opacity: 1;
+  }
+
 .note-list-wrapper {
     padding: 1em;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
 }
 
 .note-group {
     margin-bottom: 2em;
 }
 
-.note-list-container.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
+.note-list-container {
+    column-count: 4;
+    column-width: 240px;
+    padding: 1em;
+    justify-self: center;
+    position: relative;
+    margin-top: 40px;
 }
 
 .section-title {
@@ -92,6 +117,11 @@
     color: #444;
     margin-bottom: 0.5em;
     padding-inline-start: 0.3em;
+    font-weight: normal;
+    position: absolute;
+    top: -10px;
+    left: 25px;
+    text-transform: uppercase;
 }
 
 .duplicate-note-btn {
@@ -100,6 +130,7 @@
     color: gray;
     cursor: pointer;
     margin: 0 5px;
+    font-size: 1.1em;
 }
 
 .duplicate-note-btn:hover {

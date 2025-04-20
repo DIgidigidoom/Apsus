@@ -1,15 +1,19 @@
 .add-note-container {
    justify-content: center;
    align-items: center;
-   margin: 10px;
+   margin: 10px auto;
 }
 
 .add-note-container input {
     border-radius: 5px;
-    border: solid 1px lightgray;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border: solid 1px rgba(211, 211, 211, 0.577);
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
     padding: 5px;
-    margin: 10px;
+    margin: 10px auto;
+    width: 30vw;
+    max-width: 600px;
+    min-width: 30vw;
+
 }
 
 .add-note-container input:focus {
@@ -40,5 +44,10 @@
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.1em;
+    color: gray;
+}
+
+.input-buttons button:hover{
+    color: black;
 }

@@ -38,8 +38,8 @@
 }
 
 .user-msg.success {
-    background-color: #e6f4ea;
-    color: #137333;
+    background-color: rgb(211, 211, 211);
+    color: gray;
 }
 
 .user-msg.error {

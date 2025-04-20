@@ -101,15 +101,17 @@ export function NoteIndex() {
 
     return (
         < div className="note-container">
-            <NoteHeader
-                filterByType={filterByType}
-                onSetFilterType={setFilterByType}
-                searchTerm={searchTerm}
-                onSetSearchTerm={setSearchTerm} />
-            <AddNote
-                notes={notes}
-                setNotes={setNotes}
-                setIsLoading={setIsLoading} />
+            <div className="top-container">
+                <NoteHeader
+                    filterByType={filterByType}
+                    onSetFilterType={setFilterByType}
+                    searchTerm={searchTerm}
+                    onSetSearchTerm={setSearchTerm} />
+                <AddNote
+                    notes={notes}
+                    setNotes={setNotes}
+                    setIsLoading={setIsLoading} />
+            </div>
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}

@@ -7,8 +7,8 @@
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.2em;
-    color: #5f6368;
+    font-size: 1.1em;
+    color: gray;
   }
   
   .btn-color-picker:hover {

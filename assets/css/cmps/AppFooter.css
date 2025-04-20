@@ -36,6 +36,6 @@ nav :active {
 
 nav .active {
     color: darkblue;
-    font-weight: bold;
+   font-family: roboto-bold, Arial, Helvetica, sans-serif;
     text-decoration: overline;
 }

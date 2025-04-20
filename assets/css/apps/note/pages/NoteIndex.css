@@ -23,7 +23,13 @@
   
   .filter-buttons button.active {
     background-color: #e0e0e0;
-    font-weight: bold;
+    font-family: roboto-bold, Arial, Helvetica, sans-serif;
+  }
+
+  .top-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   

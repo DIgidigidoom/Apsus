@@ -37,7 +37,7 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
     function renderNote(note) {
         return (
             <section
-                className="note-preview"
+                className={`note-preview ${note.isPinned ? 'pinned' : ''}`}
                 key={note.id}
                 style={{ backgroundColor: (note.style && note.style.backgroundColor) || '#fff' }}
                 onClick={() => handleNoteClick(note)}
@@ -107,8 +107,8 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
         <div className="note-list-wrapper">
             {pinnedNotes.length > 0 && (
                 <div className="note-group">
-                    <h4 className="section-title">Pinned</h4>
-                    <div className="note-list-container grid">
+                    <div className="note-list-container ">
+                        <h4 className="section-title">Pinned</h4>
                         {pinnedNotes.map(note => renderNote(note))}
                     </div>
                 </div>
@@ -116,8 +116,8 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
 
             {otherNotes.length > 0 && (
                 <div className="note-group">
-                    {pinnedNotes.length > 0 && <h4 className="section-title">Others</h4>}
-                    <div className="note-list-container grid">
+                    <div className="note-list-container ">
+                        {pinnedNotes.length > 0 && <h4 className="section-title">Others</h4>}
                         {otherNotes.map(note => renderNote(note))}
                     </div>
                 </div>
