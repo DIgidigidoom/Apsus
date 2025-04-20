@@ -95,7 +95,23 @@
 }
 
 /* note todo modal */
-
+.todo-title-input {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-top: 0.4em;
+    padding: 0.4em 0.6em;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: transparent;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  
+  .todo-title-input:focus {
+    border-bottom: 2px solid #4285f4; /* צבע כחול של גוגל */
+  }
+  
 .note-todos-edit ul {
     list-style: none;
     padding: 0;

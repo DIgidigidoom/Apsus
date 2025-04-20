@@ -10,7 +10,7 @@ export function NoteTodos({ info, note, onUpdateNote }) {
 
     return (
         <div className="note-todos">
-            <h3>{info.title}</h3>
+            <h3>{info.label}</h3>
             <ul>
                 {info.todos.map((todo, idx) => (
                     <li key={idx}>

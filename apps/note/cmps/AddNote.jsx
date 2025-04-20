@@ -6,11 +6,12 @@ import { showSuccessMsg } from "../../../services/event-bus.service.js"
 const { useState, useRef } = React
 const { Link, useNavigate } = ReactRouterDOM
 
-export function AddNote( { notes, setNotes, setIsLoading  } ) {
+export function AddNote({ notes, setNotes, setIsLoading }) {
 
     const navigate = useNavigate()
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const fileInputRef = useRef(null)
+    const [todoTitle, setTodoTitle] = useState('')
 
     function handleChange({ target }) {
         const field = target.name
@@ -80,7 +81,6 @@ export function AddNote( { notes, setNotes, setIsLoading  } ) {
     }
 
     function onAddTodoNote() {
-
         const newNote = {
             id: null,
             createdAt: Date.now(),
@@ -101,27 +101,22 @@ export function AddNote( { notes, setNotes, setIsLoading  } ) {
         noteService.save(newNote).then(savedNote => {
             setNotes(prevNotes => [savedNote, ...prevNotes])
             setNoteToAdd(noteService.getEmptyNote())
+            setTodoTitle('')
         })
     }
+
 
 
     return (
         <section className="add-note-container flex">
             <div className="input-wrapper">
+
                 <input
-                    onChange={handleChange}
-                    onBlur={onAddNote}
-                    onKeyDown={(ev) => {
-                        if (ev.key === 'Enter') {
-                            ev.preventDefault()
-                            onAddNote(ev)
-                        }
-                    }}
-                    value={noteToAdd.info.txt}
-                    name="txt"
-                    id="txt"
+                    className="todo-title-input"
                     type="text"
-                    placeholder="Write a note..."
+                    placeholder="Todo list title"
+                    value={todoTitle}
+                    onChange={(ev) => setTodoTitle(ev.target.value)}
                 />
                 <div className="input-buttons">
                     <button
