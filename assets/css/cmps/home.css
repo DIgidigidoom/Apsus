@@ -1,10 +1,32 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
 
+.main-logo-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+}
+.main-logo-container p {
+   margin: 0;
+   font-size: 1.4rem;
+   color: var(--regular-txt-color);
+}
+.main-logo-container img {
+    width:300px;
+ }
 
 .icons-nav-container {
     display: grid;
     grid-template-columns: minmax(40 1fr) minmax(720 auto) minmax(40 1fr);
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     justify-content: center;
     align-content: center;
     gap: 200px;
@@ -18,15 +40,19 @@
     cursor: pointer;
     height: auto;
     object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.5s;
 }
 
 .icons-nav-container img:hover {
-   transform: scale(1.02);
+    transform: scale(1.02);
+    filter: unset;
+    
 }
 
 
 .note-logo-home {
-    width: 210px;
+    width: 170px;
 }
 
 .mail-logo-home {

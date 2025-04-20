@@ -14,7 +14,7 @@ export function MailDetails() {
 
     useEffect(() => {
         loadMail()
-    }, [] /*[params.bookId]*/)
+    }, [])
 
     function loadMail() {
         mailService.get(params.mailId)
@@ -66,27 +66,32 @@ export function MailDetails() {
     }
     if (!mail) return <div>Loading...</div>
 
-    
-        return (
-            <React.Fragment>
 
-                <div className="mail-details-container">
-                    <section className="mail-details-btns-container">
-                        <button className="btn back-btn-details fa-solid fa-arrow-left" onClick={onBack}></button>
-                        <button className="btn remove-mail-details-btn fa-solid fa-trash" onClick={() => onRemoveMail(mail.id)}></button>
-                    </section>
-                    <section className="mail-details-txt-container">
-                        <h1 className="mail-subject">{mail.subject}</h1>
-                        <p className="mail-from">{mail.from}</p>
-                        <p className="mail-to">to {mail.to}</p>
-                        <p className="mail-body"> {mail.body}</p>
-                    </section>
-                    <section className="mail-details-right-side">
-                        <p className="mail-sent-at">{onFormatDate()}</p>
-                        <button className="fa-regular fa-star"></button>
-                    </section>
+    return (
+        <React.Fragment>
 
-                </div>
-            </React.Fragment>
-        )
-    } 
+            <div className="mail-details-container">
+                <section className="mail-details-btns-container">
+                    <button className="btn back-btn-details fa-solid fa-arrow-left" onClick={onBack}></button>
+                    <button className="btn remove-mail-details-btn fa-solid fa-trash" onClick={() => onRemoveMail(mail.id)}></button>
+                </section>
+                <section className="mail-details-txt-container">
+                    <h1 className="mail-subject">{mail.subject}</h1>
+                    <div className="from-details">
+                        <img className="from-img" src={mail.img} alt="" />
+                        <span>
+                            <p className="mail-from">{mail.from}</p>
+                            <p className="mail-to">to {mail.to}</p>
+                        </span>
+                    </div>
+                    <p className="mail-body"> {mail.body}</p>
+                </section>
+                <section className="mail-details-right-side">
+                    <p className="mail-sent-at">{onFormatDate()}</p>
+                    <button className="fa-regular fa-star"></button>
+                </section>
+
+            </div>
+        </React.Fragment>
+    )
+} 

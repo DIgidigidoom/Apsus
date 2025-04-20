@@ -3,7 +3,7 @@ import { mailService } from "./../services/mail.service.js";
 const { Link, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function MailList({ mails, onRemoveMail, onToggleIsRead, onToggleIsStarred, onSetCompose }) {
+export function MailList({ mails, onRemoveMail, onToggleIsRead, onToggleIsStarred, onSetCompose, onSetSortBy, LoadMails,setTriggerReload }) {
     const navigate = useNavigate()
 
     function onSetIsRead(id) {
@@ -20,9 +20,15 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead, onToggleIsStarre
         <React.Fragment>
             <ul className="mail-list-container">
                 <div className="list-tool-bar">
-                    <button className="check-all-btn fa-regular fa-square"></button>
-                    <button className="refresh-btn fa-solid fa-rotate-right"></button>
-                    <button className="more-tool-bar-btn fa-solid fa-ellipsis-vertical"></button>
+                    <button className="refresh-btn fa-solid fa-rotate-right" onClick={() => {
+                        LoadMails()
+                        setTriggerReload
+                    }}></button>
+                    <label className="sort-by-label" htmlFor="sort-by">Sort By : </label>
+                    <select className="sort-by-dropdown" name="sort-by" id="sort-by" onChange={(ev) => onSetSortBy(ev.target.value)}>
+                        <option value="date">Date</option>
+                        <option value="alphabetical">Alphabetical</option>
+                    </select>
                 </div>
 
                 {mails.map(mail => {
@@ -65,8 +71,8 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead, onToggleIsStarre
                     if (mail.type === 'draft') {
                         return (
                             <div key={mail.id} onClick={() => {
-                                onSetCompose(true,mail)
-                                
+                                onSetCompose(true, mail)
+
                             }}>
                                 {content}
                             </div>

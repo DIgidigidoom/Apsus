@@ -18,6 +18,34 @@
     border-radius: 20px 20px 0 0;
     z-index: 100;
     padding-inline-start: 16px;
+    place-items: center;
+    gap: 10px;
+}
+
+.sort-dropdown-container {
+    margin: 20px;
+}
+
+.sort-by-label {
+    font-size: 14px;
+    color: #5f6368;
+    margin-right: 10px;
+}
+
+.sort-by-dropdown {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #dcdfe1;
+    border-radius: 4px;
+    background-color: #fff;
+    color: var(--regular-txt-color);
+    cursor: pointer;
+    outline: none;
+}
+
+.sort-by-dropdown:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
 }
 
 .list-tool-bar button {
