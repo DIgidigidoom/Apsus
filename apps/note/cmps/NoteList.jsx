@@ -6,7 +6,6 @@ import { ColorPicker } from './ColorPicker.jsx';
 
 
 const { useState } = React
-// const { Link } = ReactRouterDOM
 
 export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
     const [selectedNote, setSelectedNote] = useState(null)
@@ -31,33 +30,30 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
         })
     }
 
-
     function handleCloseModal() {
         setSelectedNote(null)
     }
 
-    if (!notes.length) {
+    function renderNote(note) {
         return (
-          <div className="no-notes-msg">
-            <p>No matching results.</p>
-          </div>
-        )
-      }
+            <section
+                className="note-preview"
+                key={note.id}
+                style={{ backgroundColor: (note.style && note.style.backgroundColor) || '#fff' }}
+                onClick={() => handleNoteClick(note)}
+            >
+                <button className="btn pin-note-btn" onClick={(ev) => {
+                    ev.stopPropagation()
+                    const updatedNote = { ...note, isPinned: !note.isPinned }
+                    onUpdateNote(updatedNote)
+                }}>
+                    <i className={`fa-solid fa-thumbtack ${note.isPinned ? 'pinned' : ''}`}></i>
 
-    return (
-        <div className="note-list-container flex">
-            {notes.map(note => (
-                <section
-                    className="note-preview"
-                    key={note.id}
-                    style={{ backgroundColor: (note.style && note.style.backgroundColor) || '#fff' }}
-                    onClick={() => handleNoteClick(note)}>
+                </button>
 
-                    <NotePreview
-                        note={note}
-                        onUpdateNote={onUpdateNote} />
+                <NotePreview note={note} onUpdateNote={onUpdateNote} />
 
-                    <div className="note-actions-container">
+                <div className="note-actions-container">
                     <ColorPicker
                         note={note}
                         onChangeColor={(note, color) => {
@@ -75,10 +71,41 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
                     }}>
                         <i className="fa-solid fa-trash"></i>
                     </button>
-                    </div>
+                </div>
+            </section>
+        )
+    }
 
-                </section>
-            ))}
+    if (!notes.length) {
+        return (
+            <div className="no-notes-msg">
+                <p>No matching results.</p>
+            </div>
+        )
+    }
+
+    const pinnedNotes = notes.filter(note => note.isPinned)
+    const otherNotes = notes.filter(note => !note.isPinned)
+
+    return (
+        <div className="note-list-wrapper">
+            {pinnedNotes.length > 0 && (
+                <div className="note-group">
+                    <h4 className="section-title">Pinned</h4>
+                    <div className="note-list-container grid">
+                        {pinnedNotes.map(note => renderNote(note))}
+                    </div>
+                </div>
+            )}
+
+            {otherNotes.length > 0 && (
+                <div className="note-group">
+                    {pinnedNotes.length > 0 && <h4 className="section-title">Others</h4>}
+                    <div className="note-list-container grid">
+                        {otherNotes.map(note => renderNote(note))}
+                    </div>
+                </div>
+            )}
 
             <NoteModal
                 note={selectedNote}
@@ -86,7 +113,7 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
                 onSave={handleSaveNote}
                 onClose={handleCloseModal}
             />
-
         </div>
     )
 }
+

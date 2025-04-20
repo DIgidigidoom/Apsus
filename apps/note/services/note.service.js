@@ -93,6 +93,34 @@ const demoNotes = [
             backgroundColor: '#fff'
         }
     },
+    {
+        id: 'n107',
+        createdAt: 1112224,
+        type: 'NoteTodos',
+        isPinned: true,
+        info: {
+            title: 'Get my stuff together',
+            todos: [
+                { txt: 'Driving license', doneAt: null },
+                { txt: 'Coding power', doneAt: 187111111 }
+            ]
+        },
+        style: {
+            backgroundColor: '#fff'
+        }
+    },
+    {
+        id: 'n108',
+        createdAt: 1112225,
+        type: 'NoteTxt',
+        isPinned: true,
+        style: {
+            backgroundColor: '#fff'
+        },
+        info: {
+            txt: 'Fullstack Me Baby!'
+        }
+    }
 ]
 _createNotes()
 
