@@ -6,15 +6,15 @@ import noteLogo from '../assets/img/note-logo.png'
 export function Home() {
 
     return <section className="home">
-    <div className="icons-nav-container">
-        <NavLink to="/mail">
-            <img className="mail-logo-home" src={gmailLogo} alt="" />
-        </NavLink>
-        <NavLink to="/note">
-            <img className="note-logo-home" src={noteLogo} alt="" />
-        </NavLink>
-    </div>
-</section>
+        <div className="icons-nav-container">
+            <NavLink to="/mail">
+                <img className="mail-logo-home" src="public/assets/img/Gmail-logo-home.png" alt="" />
+            </NavLink>
+            <NavLink to="/note">
+                <img className="note-logo-home" src="/public/assets/img/note-logo.png" alt="" />
+            </NavLink>
+        </div>
+    </section>
 }
 
 
