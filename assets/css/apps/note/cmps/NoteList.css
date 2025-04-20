@@ -1,10 +1,9 @@
-
-
 .color-picker {
     display: flex;
     gap: 4px;
     margin-top: 8px;
 }
+
 
 .color-btn {
     width: 20px;
@@ -19,7 +18,7 @@
     display: flex;
     justify-content: center;
     opacity: 0;
-    transition: 0.2s ease-in-out ;
+    transition: 0.2s ease-in-out;
 }
 
 .note-preview:hover .note-actions-container {
@@ -61,7 +60,7 @@
     padding: 6px;
     transition: background-color 0.2s ease;
     opacity: 0;
-    transition: 0.2s ease-in-out ;
+    transition: 0.2s ease-in-out;
 }
 
 .note-preview:hover .pin-note-btn {
@@ -90,7 +89,7 @@
 
 .note-preview.pinned .pin-note-btn {
     opacity: 1;
-  }
+}
 
 .note-list-wrapper {
     padding: 1em;
@@ -136,4 +135,3 @@
 .duplicate-note-btn:hover {
     color: black;
 }
-

@@ -9,6 +9,12 @@ const { useState } = React
 
 export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
     const [selectedNote, setSelectedNote] = useState(null)
+    const [isOpen, setIsOpen] = useState(false)
+
+    const colors = [
+        '#fff475', '#f28b82', '#fbbc04', '#ccff90', '#a7ffeb',
+        '#cbf0f8', '#aecbfa', '#d7aefb', '#e6c9a8', '#e8eaed', '#ffffff'
+    ]
 
     function handleNoteClick(note) {
         setSelectedNote(note)
@@ -34,6 +40,16 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
         setSelectedNote(null)
     }
 
+    function onChangeColor(note, color, ev) {
+        ev.stopPropagation()
+        const updatedNote = {
+            ...note,
+            style: { ...note.style, backgroundColor: color }
+        }
+        onUpdateNote(updatedNote)
+        setIsOpen(false)
+    }
+
     function renderNote(note) {
         return (
             <section
@@ -56,14 +72,37 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
                 <div className="note-actions-container">
                     <ColorPicker
                         note={note}
-                        onChangeColor={(note, color) => {
-                            const updatedNote = {
-                                ...note,
-                                style: { ...note.style, backgroundColor: color }
-                            }
-                            onUpdateNote(updatedNote)
-                        }}
+                        setIsOpen={setIsOpen}
+                    // onChangeColor={(note, color) => {
+                    //     const updatedNote = {
+                    //         ...note,
+                    //         style: { ...note.style, backgroundColor: color }
+                    //     }
+                    //     onUpdateNote(updatedNote)
+                    //     setIsOpen = { setIsOpen }
+                    // }}
                     />
+
+                    {isOpen && (
+                        <div className="color-picker">
+                            {colors.map(color => (
+                                <div
+                                    key={color}
+                                    className="color-circle"
+                                    style={{
+                                        backgroundColor: color,
+                                        border: color === '#ffffff' ? '1px solid #ccc' : 'none'
+                                    }}
+                                    onClick={(ev) => {
+                                        onChangeColor(note, color, ev)
+
+                                    }}
+                                >
+                                    {color === '#ffffff' && <span className="no-color-x">✕</span>}
+                                </div>
+                            ))}
+                        </div>
+                    )}
 
                     <button className="btn duplicate-note-btn" onClick={(ev) => {
                         ev.stopPropagation()
