@@ -10,11 +10,12 @@ footer {
 .app-footer {
     display: flex;
     flex-direction: column;
-    padding: 10px 0;
+    padding: 20px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     height: fit-content;
+    text-align: center;
 }
 
 .links-container-footer {
@@ -24,11 +25,6 @@ footer {
 .links-container-footer>* {
     text-decoration: underline;
 }
-
-
-/* nav  {
-    margin: .5em;
-} */
 
 nav :active {
     color: purple;
