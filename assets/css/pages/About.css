@@ -10,6 +10,7 @@
     justify-content: center;
     gap: 2em;
     margin-top: 2em;
+    margin-bottom: 100px;
 }
 
 .team-member-card {
@@ -73,4 +74,5 @@
 .g-green {
     color: #34a853;
 }
+
 
