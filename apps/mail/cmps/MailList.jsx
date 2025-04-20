@@ -65,8 +65,8 @@ export function MailList({ mails, onRemoveMail, onToggleIsRead, onToggleIsStarre
                     if (mail.type === 'draft') {
                         return (
                             <div key={mail.id} onClick={() => {
-                                onSetCompose(true)
-                                navigate(`/mail/draft/${mail.id}`)
+                                onSetCompose(true,mail)
+                                
                             }}>
                                 {content}
                             </div>

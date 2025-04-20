@@ -1,25 +1,25 @@
 import { mailService } from "../services/mail.service.js"
 
-const { useState,useEffect } = React
+const { useState, useEffect } = React
 const { useParams, Link, useNavigate } = ReactRouterDOM
 
-export function AddMail({ onSetCompose }) {
-    const { mailId } = useParams()
+export function AddMail({ onSetCompose, mailToEdit }) {
+    // const { mailId } = useParams()
     const [mailToAdd, setMailToAdd] = useState(mailService.getEmptyMail())
     console.log("mailToAdd: ", mailToAdd)
     const navigate = useNavigate()
 
-   
-        useEffect(() => {
-            if (!mailId) {
-                setMailToAdd(mailService.getEmptyMail()) 
-            } else {
-                mailService.get(mailId)
-                    .then(mail => setMailToAdd(mail))
-                    .catch(err => console.error('Error loading mail:', err))
-            }
-        }, [mailId])
-    
+
+    useEffect(() => {
+        if (!mailToEdit) {
+            setMailToAdd(mailService.getEmptyMail())
+        } else {
+            mailService.get(mailToEdit.id)
+                .then(mail => setMailToAdd(mail))
+                .catch(err => console.error('Error loading mail:', err))
+        }
+    }, [mailToEdit])
+
 
     function handleChange({ target }) {
         const field = target.name
