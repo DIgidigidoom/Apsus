@@ -6,7 +6,7 @@ import { ColorPicker } from './ColorPicker.jsx';
 
 
 const { useState } = React
-const { Link } = ReactRouterDOM
+// const { Link } = ReactRouterDOM
 
 export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
     const [selectedNote, setSelectedNote] = useState(null)
@@ -49,6 +49,7 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
                         note={note}
                         onUpdateNote={onUpdateNote} />
 
+                    <div className="note-actions-container">
                     <ColorPicker
                         note={note}
                         onChangeColor={(note, color) => {
@@ -66,12 +67,8 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
                     }}>
                         <i className="fa-solid fa-trash"></i>
                     </button>
-                    
-                    <button className="btn note-details-btn" onClick={(ev) => ev.stopPropagation()} >
-                        <Link to={`/note/details/`}>
-                            <i className="fa-solid fa-pen-to-square"></i>
-                        </Link>
-                    </button>
+                    </div>
+
                 </section>
             ))}
 

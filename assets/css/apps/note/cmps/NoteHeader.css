@@ -1,6 +1,8 @@
+
 .note-header {
+    align-items: center;
     justify-content: space-between;
-}
+  }
 
 .note-logo-img {
     width: 30px;
@@ -49,3 +51,39 @@
 .fa-xmark {
     right: 5px;
 }
+
+
+  
+  .search-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  /* .search-input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  } */
+  
+  .filter-buttons {
+    display: flex;
+    gap: 0.5em;
+    margin-top: 0.6em;
+    padding-left: 1.8em;
+  }
+  
+  .filter-buttons button {
+    background-color: transparent;
+    border: none;
+    padding: 0.4em 0.8em;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+  }
+  
+  .filter-buttons button.active {
+    background-color: #e0e0e0;
+    font-weight: bold;
+  }

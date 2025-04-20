@@ -7,31 +7,37 @@ import { UserMsg } from "../../../cmps/UserMsg.jsx"
 
 
 const { useState, useEffect } = React
-const { useSearchParams, Outlet, useParams } = ReactRouterDOM
+// const { useSearchParams } = ReactRouterDOM
 
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [loadingNoteId, setLoadingNoteId] = useState(null)
-    const params = useParams()
+    const [filterByType, setFilterByType] = useState('all')
 
     useEffect(() => {
-        setIsLoading(true)
         loadNotes()
-        setIsLoading(false)
-    }, [notes])
+    }, [filterByType])
 
     function loadNotes() {
         noteService.query().then(fetchedNotes => {
+            let filteredNotes = fetchedNotes
+
+            if (filterByType !== 'all') {
+                filteredNotes = filteredNotes.filter(note => note.type === filterByType)
+            }
+
             const prevNotesStr = JSON.stringify(notes)
-            const newNotesStr = JSON.stringify(fetchedNotes)
-    
+            const newNotesStr = JSON.stringify(filteredNotes)
+
             if (prevNotesStr !== newNotesStr) {
-                setNotes(fetchedNotes)
-            }})
+                setNotes(filteredNotes)
+            }
+        })
     }
-    
+
+
 
     function onRemoveNote(noteId) {
 
@@ -42,7 +48,6 @@ export function NoteIndex() {
             })
             .catch(err => {
                 console.log('Problem removing note:', err)
-                showErrorMsg('Problem removing note!')
             })
     }
 
@@ -74,7 +79,7 @@ export function NoteIndex() {
 
     return (
         < div className="note-container">
-            <NoteHeader />
+            <NoteHeader filterByType={filterByType} onSetFilterType={setFilterByType} />
             <AddNote notes={notes} setNotes={setNotes} setIsLoading={setIsLoading} />
             <NoteList
                 notes={notes}
