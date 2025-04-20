@@ -93,3 +93,16 @@
     margin-bottom: 0.5em;
     padding-inline-start: 0.3em;
 }
+
+.duplicate-note-btn {
+    border: none;
+    background-color: transparent;
+    color: gray;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.duplicate-note-btn:hover {
+    color: black;
+}
+

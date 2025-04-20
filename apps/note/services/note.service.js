@@ -12,116 +12,90 @@ const NOTE_KEY = 'noteDB'
 
 const demoNotes = [
     {
-        id: 'n101',
-        createdAt: 1112222,
-        type: 'NoteTxt',
-        isPinned: false,
-        style: {
-            backgroundColor: '#fff'
-        },
-        info: {
-            txt: 'Fullstack Me Baby!'
-        }
+      id: 'n101',
+      createdAt: Date.now(),
+      type: 'NoteTxt',
+      isPinned: true,
+      style: {
+        backgroundColor: '#fff'
+      },
+      info: {
+        txt: 'Buy groceries: milk, eggs, bread'
+      }
     },
     {
-        id: 'n102',
-        createdAt: 1112223,
-        type: 'NoteImg',
-        isPinned: false,
-        info: {
-            url: 'https://picsum.photos/200',
-            title: 'Bobi and Me'
-        },
-        style: {
-            backgroundColor: '#fff'
-        }
+      id: 'n102',
+      createdAt: Date.now(),
+      type: 'NoteImg',
+      isPinned: false,
+      style: {
+        backgroundColor: '#fff'
+      },
+      info: {
+        url: 'https://picsum.photos/200',
+        title: 'Vacation in Italy 🇮🇹'
+      }
     },
     {
-        id: 'n103',
-        createdAt: 1112224,
-        type: 'NoteTodos',
-        isPinned: false,
-        info: {
-            title: 'Get my stuff together',
-            todos: [
-                { txt: 'Driving license', doneAt: null },
-                { txt: 'Coding power', doneAt: 187111111 }
-            ]
-        },
-        style: {
-            backgroundColor: '#fff'
-        }
+      id: 'n103',
+      createdAt: Date.now(),
+      type: 'NoteTodos',
+      isPinned: true,
+      style: {
+        backgroundColor: '#fff'
+      },
+      info: {
+        label: 'Weekend Tasks',
+        todos: [
+          { txt: 'Clean the house', doneAt: null },
+          { txt: 'Call mom', doneAt: null },
+          { txt: 'Finish project', doneAt: null }
+        ]
+      }
     },
     {
-        id: 'n104',
-        createdAt: 1112225,
-        type: 'NoteTxt',
-        isPinned: false,
-        style: {
-            backgroundColor: '#fff'
-        },
-        info: {
-            txt: 'Fullstack Me Baby!'
-        }
+      id: 'n104',
+      createdAt: Date.now(),
+      type: 'NoteTxt',
+      isPinned: false,
+      style: {
+        backgroundColor: '#fff'
+      },
+      info: {
+        txt: 'Idea for startup: Pet tracker app'
+      }
     },
     {
-        id: 'n105',
-        createdAt: 1112224,
-        type: 'NoteTodos',
-        isPinned: false,
-        info: {
-            title: 'Get my stuff together',
-            todos: [
-                { txt: 'Driving license', doneAt: null },
-                { txt: 'Coding power', doneAt: 187111111 }
-            ]
-        },
-        style: {
-            backgroundColor: '#fff'
-        }
+      id: 'n105',
+      createdAt: Date.now(),
+      type: 'NoteTodos',
+      isPinned: false,
+      style: {
+        backgroundColor: '#fff'
+      },
+      info: {
+        label: 'Books to Read',
+        todos: [
+          { txt: 'Atomic Habits', doneAt: null },
+          { txt: 'The Alchemist', doneAt: null }
+        ]
+      }
     },
     {
-        id: 'n106',
-        createdAt: 1112223,
-        type: 'NoteImg',
-        isPinned: false,
-        info: {
-            url: 'https://picsum.photos/100',
-            title: 'Shuki and Me'
-        },
-        style: {
-            backgroundColor: '#fff'
-        }
-    },
-    {
-        id: 'n107',
-        createdAt: 1112224,
-        type: 'NoteTodos',
-        isPinned: true,
-        info: {
-            title: 'Get my stuff together',
-            todos: [
-                { txt: 'Driving license', doneAt: null },
-                { txt: 'Coding power', doneAt: 187111111 }
-            ]
-        },
-        style: {
-            backgroundColor: '#fff'
-        }
-    },
-    {
-        id: 'n108',
-        createdAt: 1112225,
-        type: 'NoteTxt',
-        isPinned: true,
-        style: {
-            backgroundColor: '#fff'
-        },
-        info: {
-            txt: 'Fullstack Me Baby!'
-        }
+      id: 'n106',
+      createdAt: Date.now(),
+      type: 'NoteImg',
+      isPinned: false,
+      style: {
+        backgroundColor: '#fff'
+      },
+      info: {
+        url: 'https://picsum.photos/100',
+        title: 'Inspiration Board'
+      }
     }
-]
+  ]
+  
 _createNotes()
 
 function query() {

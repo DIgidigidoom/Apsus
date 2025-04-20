@@ -5,9 +5,7 @@
     padding: 10px;
     text-align: center;
     cursor: pointer;
-    /* min-height: 100px; */
-    height: auto;
-    /* min-height: unset; */
+    height: fit-content;
 }
 
 .note-preview button {
