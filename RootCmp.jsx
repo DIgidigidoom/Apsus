@@ -29,9 +29,9 @@ export function App() {
 
                 { /* Mail Routes */}
                 <Route path="/mail" element={<MailIndex />}>
-                    <Route index element={<MailList />} /> {/* Default list */}
-                    <Route path=":mailId" element={<MailDetails />} /> {/* Regular mail */}
-                    <Route path="draft/:mailId" element={<AddMail />} /> {/* Draft mail */}
+                    <Route index element={<MailList />} />
+                    <Route path=":mailId" element={<MailDetails />} />
+                    <Route path="draft/:mailId" element={<AddMail />} /> 
                 </Route>
 
 
