@@ -52,3 +52,8 @@
 .inbox-btn span {
     margin-inline-end: 80px;
 }
+.side-nav-btn.active {
+    background-color: var(--label-hl-color);
+    font-weight: bold;
+    color: var(--dark-txt-color);
+}

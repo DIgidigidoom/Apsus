@@ -19,6 +19,7 @@ export function MailIndex() {
     const [triggerReload, setTriggerReload] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter)
     const [mailType, setMailType] = useState('inbox')
+    const [mailToEdit, setMailToEdit] = useState(null)
     const params = useParams()
 
 
@@ -128,7 +129,8 @@ export function MailIndex() {
     function onSetType(type) {
         setMailType(type)
     }
-    function onSetCompose(value) {
+    function onSetCompose(value,mailToEdit) {
+        setMailToEdit(mailToEdit)
         setIsComposing(value)
     }
 
@@ -146,6 +148,7 @@ export function MailIndex() {
                     unreadMails={gUnreadMails.length}
                     onSetType={onSetType}
                     onSetCompose={onSetCompose}
+                    mailType={mailType}
                 />
                 <MailFilter
                     onSetFilterBy={onSetFilterBy}
@@ -164,6 +167,7 @@ export function MailIndex() {
                 {isComposing && (
                     <AddMail
                         onSetCompose={onSetCompose}
+                        mailToEdit={mailToEdit}
                     />
                 )}
 
