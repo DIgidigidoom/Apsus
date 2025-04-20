@@ -11,20 +11,37 @@
 
 .mail-details-txt-container {
     padding: 20px;
-    margin-inline-start: 72px;
+    
     grid-row: 2;
 }
 
 .mail-details-container .mail-subject {
     font-size: 1.375em;
-
+    margin-inline-start: 72px;
     font-family: roboto-light;
+}
+.mail-details-container .mail-body {
+    margin-inline-start: 72px;
 }
 
 .mail-details-container .mail-from {
     font-size: 0.875em;
     margin-block-end: 2px;
     font-family: roboto-bold;
+}
+.mail-details-container .from-details{
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    
+}
+.mail-details-container .from-img{
+    width: 40px;
+    height:40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 0.1px solid lightgray;
+    margin-inline-start: 5px;
 }
 
 .mail-details-container .mail-to {
@@ -41,6 +58,7 @@
     grid-row: 2;
     justify-content: end;
     margin-inline-end: 92px;
+    
 }
 
 .mail-details-container .mail-sent-at {

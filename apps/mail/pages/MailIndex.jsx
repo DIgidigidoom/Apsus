@@ -18,6 +18,7 @@ export function MailIndex() {
     const [isLoading, setIsLoading] = useState(false)
     const [triggerReload, setTriggerReload] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter)
+    const [sortBy, setsortBy] = useState('date')
     const [mailType, setMailType] = useState('inbox')
     const [mailToEdit, setMailToEdit] = useState(null)
     const params = useParams()
@@ -28,7 +29,7 @@ export function MailIndex() {
     useEffect(() => {
         _countUnread()
         LoadMails()
-    }, [filterBy, triggerReload, mailType, params.mailId, isComposing])
+    }, [filterBy, triggerReload, mailType, params.mailId, isComposing, sortBy])
 
     function _countUnread() {
 
@@ -44,18 +45,29 @@ export function MailIndex() {
         if (mailType !== 'starred') {
             mailService.query(filterBy)
                 .then(allMails => {
-                    allMails.sort((a, b) => b.sentAt - a.sentAt)
+                    if (sortBy === 'date') {
+                        allMails.sort((a, b) => b.sentAt - a.sentAt)
+                    } else {
+                        allMails.sort()
+                    }
                     const Mails = allMails.filter(mail => mail.type === mailType)
                     setMails(Mails)
+                    
 
                 })
                 .catch(err => console.log('err:', err))
         } else {
             mailService.query(filterBy)
                 .then(allMails => {
-                    allMails.sort((a, b) => b.sentAt - a.sentAt)
+                    if (sortBy === 'date') {
+                        allMails.sort((a, b) => b.sentAt - a.sentAt)
+                    }
+                    else {
+                        allMails.sort()
+                    }
                     const starredMails = allMails.filter(mail => mail.isStarred)
                     setMails(starredMails)
+                    
 
                 })
                 .catch(err => console.log('err:', err))
@@ -129,9 +141,12 @@ export function MailIndex() {
     function onSetType(type) {
         setMailType(type)
     }
-    function onSetCompose(value,mailToEdit) {
+    function onSetCompose(value, mailToEdit) {
         setMailToEdit(mailToEdit)
         setIsComposing(value)
+    }
+    function onSetSortBy(sortBy) {
+        setsortBy(sortBy)
     }
 
 
@@ -162,6 +177,9 @@ export function MailIndex() {
                             onToggleIsRead={onToggleIsRead}
                             onToggleIsStarred={onToggleIsStarred}
                             onSetCompose={onSetCompose}
+                            onSetSortBy={onSetSortBy}
+                            LoadMails = {LoadMails}
+                            setTriggerReload= {setTriggerReload}
                         />}
                 </div>
                 {isComposing && (
