@@ -1,15 +1,13 @@
 const { Link } = ReactRouterDOM
 
 
-export function SideNav({ unreadMails, onSetType, setIsComposing }) {
-    function onSetCompose() {
-        setIsComposing(true)
-    }
+export function SideNav({ unreadMails, onSetType, onSetCompose }) {
+    
 
     return (
         <div className="side-nav-container">
 
-            <button className="btn add-mail-btn" onClick={() => onSetCompose()}><span className="fa-solid fa-pen"></span>Compose</button>
+            <button className="btn add-mail-btn" onClick={() => onSetCompose(true)}><span className="fa-solid fa-pen"></span>Compose</button>
 
             <button onClick={() => onSetType('inbox')} className="side-nav-btn inbox-btn"><i className="fa-solid fa-inbox"> </i><span>Inbox</span>{unreadMails}</button>
             <button onClick={() => onSetType('starred')} className="side-nav-btn starred-btn"> <i className="fa-regular fa-star"></i><span> Starred</span></button>

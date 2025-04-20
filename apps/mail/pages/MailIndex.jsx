@@ -46,7 +46,7 @@ export function MailIndex() {
                     allMails.sort((a, b) => b.sentAt - a.sentAt)
                     const Mails = allMails.filter(mail => mail.type === mailType)
                     setMails(Mails)
-                    console.log("Allmails: ", allMails)
+
                 })
                 .catch(err => console.log('err:', err))
         } else {
@@ -128,6 +128,9 @@ export function MailIndex() {
     function onSetType(type) {
         setMailType(type)
     }
+    function onSetCompose(value) {
+        setIsComposing(value)
+    }
 
 
 
@@ -142,7 +145,7 @@ export function MailIndex() {
                 <SideNav
                     unreadMails={gUnreadMails.length}
                     onSetType={onSetType}
-                    setIsComposing={setIsComposing}
+                    onSetCompose={onSetCompose}
                 />
                 <MailFilter
                     onSetFilterBy={onSetFilterBy}
@@ -155,12 +158,12 @@ export function MailIndex() {
                             onRemoveMail={onRemoveMail}
                             onToggleIsRead={onToggleIsRead}
                             onToggleIsStarred={onToggleIsStarred}
+                            onSetCompose={onSetCompose}
                         />}
                 </div>
                 {isComposing && (
                     <AddMail
-                        setIsComposing={() => setIsComposing()}
-                    // onSend={onSendMail}
+                        onSetCompose={onSetCompose}
                     />
                 )}
 

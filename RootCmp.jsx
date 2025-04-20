@@ -28,9 +28,12 @@ export function App() {
                 <Route path="/about" element={<About />} />
 
                 { /* Mail Routes */}
-                <Route path="/mail/*" element={<MailIndex />}/>
-                <Route path="/mail/:mailId" element={<MailIndex />} /> 
-                
+                <Route path="/mail" element={<MailIndex />}>
+                    <Route index element={<MailList />} /> {/* Default list */}
+                    <Route path=":mailId" element={<MailDetails />} /> {/* Regular mail */}
+                    <Route path="draft/:mailId" element={<AddMail />} /> {/* Draft mail */}
+                </Route>
+
 
                 {/* note Routes */}
                 <Route path="/note" element={<NoteIndex />} />
@@ -38,6 +41,6 @@ export function App() {
             </Routes>
             <AppFooter />
         </section>
-        
+
     </Router>
 }

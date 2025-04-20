@@ -26,7 +26,8 @@ function query(filterBy = {}) {
 }
 
 function get(mailId) {
-    return storageService.get(RECIEVED_MAILS_KEY, mailId)
+    if (mailId) return storageService.get(RECIEVED_MAILS_KEY, mailId)
+
 }
 function getDefaultFilter() {
     return { txt: '' }
@@ -44,7 +45,7 @@ function getEmptyMail() {
         from: '',
         to: '',
         type: null,
-        isStarred:false,
+        isStarred: false,
     }
 }
 
@@ -61,7 +62,7 @@ function save(mail) {
     }
 }
 
-function _createMail(subject, body, sentAt, removedAt, from, to,type) {
+function _createMail(subject, body, sentAt, removedAt, from, to, type) {
     const mail = {
         id: utilService.makeId(),
         createdAt: Date.now(),
@@ -73,7 +74,7 @@ function _createMail(subject, body, sentAt, removedAt, from, to,type) {
         from,
         to,
         type,
-        isStarred:false,
+        isStarred: false,
 
     }
 
@@ -106,7 +107,7 @@ function _createMails() {
             _createMail('Design Sprint Recap', 'Here’s the full recap from the sprint. The progress was great!', 1681739000000, null, 'ryan@uxmail.com', 'Tom-shahar@gmail.com', 'inbox'),
             _createMail('Documentation Update', 'Updated the API docs with the latest changes. Ping me if anything looks unclear.', 1681740000000, null, 'Tom-shahar@gmail.com', 'dev@api.io', 'draft'),
             _createMail('Onboarding Checklist', 'This checklist should help new hires get started quickly. Let me know if I missed anything.', 1712947200000, null, 'sophie@hrhub.org', 'Tom-shahar@gmail.com', 'inbox'),
-            _createMail('System Downtime', 'There’ll be scheduled maintenance on Saturday. Expect around 30 minutes of downtime.',1743886800000, null, 'Tom-shahar@gmail.com', 'it@sysmail.com', 'sent'),
+            _createMail('System Downtime', 'There’ll be scheduled maintenance on Saturday. Expect around 30 minutes of downtime.', 1743886800000, null, 'Tom-shahar@gmail.com', 'it@sysmail.com', 'sent'),
             _createMail('App Analytics', 'Latest app analytics look promising. Big spike in engagement last week!', 1681743000000, null, 'daniel@analytics.io', 'Tom-shahar@gmail.com', 'inbox'),
             _createMail('Support Request', 'A user reported a crash in the iOS version. Forwarding the logs here.', 1681744000000, null, 'Tom-shahar@gmail.com', 'support@helpdesk.com', 'trash'),
             _createMail('Wireframes Ready', 'Finished the wireframes for the new feature. Awaiting feedback.', 1681745000000, null, 'ella@uiux.com', 'Tom-shahar@gmail.com', 'inbox'),

@@ -1,12 +1,25 @@
 import { mailService } from "../services/mail.service.js"
 
-const { useState } = React
-const { Link, useNavigate } = ReactRouterDOM
+const { useState,useEffect } = React
+const { useParams, Link, useNavigate } = ReactRouterDOM
 
-export function AddMail({ setIsComposing }) {
+export function AddMail({ onSetCompose }) {
+    const { mailId } = useParams()
     const [mailToAdd, setMailToAdd] = useState(mailService.getEmptyMail())
-
+    console.log("mailToAdd: ", mailToAdd)
     const navigate = useNavigate()
+
+   
+        useEffect(() => {
+            if (!mailId) {
+                setMailToAdd(mailService.getEmptyMail()) 
+            } else {
+                mailService.get(mailId)
+                    .then(mail => setMailToAdd(mail))
+                    .catch(err => console.error('Error loading mail:', err))
+            }
+        }, [mailId])
+    
 
     function handleChange({ target }) {
         const field = target.name
@@ -36,8 +49,8 @@ export function AddMail({ setIsComposing }) {
             to: mailToAdd.to,
             type: 'sent'
         }
-        mailService.save(newMail).then(()=>setIsComposing(false))
-        
+        mailService.save(newMail).then(() => onSetCompose(false))
+
 
     }
     function onDraftMail(ev) {
@@ -54,9 +67,9 @@ export function AddMail({ setIsComposing }) {
             type: 'draft'
         }
         console.log("draftMail: ", draftMail)
-        mailService.save(draftMail).then(()=>setIsComposing(false))
-       
-        
+        mailService.save(draftMail).then(() => onSetCompose(false))
+
+
     }
     function onBack() {
         navigate('/mail')
