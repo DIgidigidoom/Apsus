@@ -32,7 +32,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
     const { txt } = filterByToEdit
     return (
         <section className="mail-filter-container">
-            <img className="mail-logo" src="assets/img/gmailLogo.png" alt="" />
+            <img className="mail-logo" src="assets/img/gmailLogo.PNG" alt="" />
             <form onSubmit={onSubmitFilter}>
                 <div className="mail-search-bar">
                     <button className="btn mail-filter-btn fa-solid fa-magnifying-glass search-icon"></button>
