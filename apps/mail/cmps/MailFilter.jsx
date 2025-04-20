@@ -36,7 +36,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
             <form onSubmit={onSubmitFilter}>
                 <div className="mail-search-bar">
                     <button className="btn mail-filter-btn fa-solid fa-magnifying-glass search-icon"></button>
-                    <input className="search-input" onChange={handleChange} value={txt} name="txt" id="txt" type="text" />
+                    <input className="search-input" onChange={handleChange} value={txt} name="txt" id="txt" type="text" placeholder="Search..." />
                 </div>
 
             </form>

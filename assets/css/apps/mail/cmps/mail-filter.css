@@ -1,4 +1,4 @@
-.mail-search-bar{
+.mail-search-bar {
   display: flex;
   align-items: center;
   background-color: var(--mail-srch-bg);
@@ -9,13 +9,15 @@
   margin: 0 auto;
   box-shadow: 0 1px 2px rgba(60, 64, 67, 0.1);
   transition: box-shadow 0.2s ease-in-out;
+
 }
 
-.mail-filter-container form{
-    max-width: 1020px;
-    width: 40vw;
-    
+.mail-filter-container form {
+  max-width: 1020px;
+  width: 40vw;
+
 }
+
 .mail-logo {
   width: 109px;
   height: auto;
@@ -23,23 +25,29 @@
 }
 
 .mail-search-bar:focus-within {
-    box-shadow: 0 1px 6px rgba(60, 64, 67, 0.3);
-  }
-  .search-icon {
-    color: #5f6368;
-    margin-right: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    background: var(--mail-srch-bg);
-  }
+  box-shadow: 0 1px 6px rgba(60, 64, 67, 0.3);
+}
 
-  .search-input {
-    border: none;
-    outline: none;
-    background: var(--mail-srch-bg);
-    font-size: 16px;
-    width: 100%;
-    color: #202124;
-    font-family: 'Roboto', sans-serif;
-  }
+.search-icon {
+  color: #5f6368;
+  margin-right: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  background: var(--mail-srch-bg);
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: var(--mail-srch-bg);
+  font-size: 16px;
+  width: 100%;
+  color: #202124;
+  /* font-family: 'Roboto', sans-serif; */
+
+}
+
+input{
+  font-family: 'Roboto', sans-serif;
+}
