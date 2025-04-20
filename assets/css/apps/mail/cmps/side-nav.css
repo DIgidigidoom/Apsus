@@ -10,14 +10,14 @@
     width: 142px;
     height: 56px;
     border-radius: 16px;
-    font-weight: 600;
+    font-weight: 400;
     margin-block-end: 16px;
-    margin-inline-start: 6px;
+    margin-inline-start: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    
+    font-family: roboto-regular;
 }
 
 
@@ -32,7 +32,9 @@
     padding-inline-start: 26px;
     text-align: left;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 14px;
+    color: var(--regular-txt-color);
+    font-family: roboto-regular;
 
 
 }

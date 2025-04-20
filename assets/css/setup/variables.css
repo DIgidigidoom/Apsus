@@ -8,7 +8,8 @@
     --compose-btn-bg: rgb(194, 231, 255);
 
     --light-txt-color: #5F6368;
-    --hover-side-nav-color: #dde0e4;
+    --regular-txt-color: rgb(72,73,73);
     --dark-txt-color: rgb(32, 33, 36);
+    --hover-side-nav-color: #dde0e4;
     --mail-srch-bg: rgb(233, 238, 246);
 }
