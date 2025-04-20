@@ -65,6 +65,22 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
                         }}
                     />
 
+                    <button className="btn duplicate-note-btn" onClick={(ev) => {
+                        ev.stopPropagation()
+                        const duplicatedNote = {
+                            ...note,
+                            id: null,
+                            createdAt: Date.now(),
+                        }
+                        noteService.save(duplicatedNote).then(savedNote => {
+                            setNotes(prevNotes => [savedNote, ...prevNotes])
+                            showSuccessMsg('Note duplicated!')
+                        })
+                    }}>
+                        <i className="fa-regular fa-clone"></i>
+                    </button>
+
+
                     <button className="btn remove-note-btn" onClick={(ev) => {
                         ev.stopPropagation()
                         onRemoveNote(note.id)
