@@ -110,23 +110,31 @@ export function AddNote({ notes, setNotes, setIsLoading }) {
     return (
         <section className="add-note-container flex">
             <div className="input-wrapper">
-
                 <input
-                    className="todo-title-input"
                     type="text"
-                    placeholder="Todo list title"
-                    value={todoTitle}
-                    onChange={(ev) => setTodoTitle(ev.target.value)}
+                    name="txt"
+                    value={noteToAdd.info.txt}
+                    onChange={handleChange}
+                    onKeyDown={(ev) => {
+                        if (ev.key === 'Enter') {
+                            ev.preventDefault()
+                            onAddNote(ev)
+                        }
+                    }}
+                    placeholder="Write a note..."
                 />
+
                 <div className="input-buttons">
+                    <button
+                        title="New text note"
+                        onClick={onAddTextNote}>
+                        <i className="fa-solid fa-text-slash"></i>
+                    </button>
+
                     <button
                         title="New list"
                         onClick={onAddTodoNote}>
                         <i className="fa-regular fa-square-check check-mark"></i>
-                    </button>
-
-                    <button title="New note with drawing">
-                        <i className="fa-solid fa-paintbrush"></i>
                     </button>
 
                     <button
@@ -146,6 +154,7 @@ export function AddNote({ notes, setNotes, setIsLoading }) {
                 </div>
             </div>
         </section>
+
     )
 }
 

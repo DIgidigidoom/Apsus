@@ -7,31 +7,61 @@ import { UserMsg } from "../../../cmps/UserMsg.jsx"
 
 
 const { useState, useEffect } = React
-const { useSearchParams, Outlet, useParams } = ReactRouterDOM
+// const { useSearchParams } = ReactRouterDOM
 
 export function NoteIndex() {
 
     const [notes, setNotes] = useState(null)
+
     const [isLoading, setIsLoading] = useState(false)
     const [loadingNoteId, setLoadingNoteId] = useState(null)
-    const params = useParams()
+
+    const [filterByType, setFilterByType] = useState('all')
+    const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
-        setIsLoading(true)
         loadNotes()
-        setIsLoading(false)
-    }, [notes])
+    }, [filterByType, searchTerm])
 
     function loadNotes() {
         noteService.query().then(fetchedNotes => {
+            let filteredNotes = fetchedNotes
+    
+            if (filterByType !== 'all') {
+                filteredNotes = filteredNotes.filter(note => note.type === filterByType)
+            }
+    
+            if (searchTerm) {
+                const lowerSearch = searchTerm.toLowerCase()
+                filteredNotes = filteredNotes.filter(note => {
+                    const { type, info } = note
+    
+                    if (type === 'NoteTxt') {
+                        return info.txt && info.txt.toLowerCase().includes(lowerSearch)
+                    }
+    
+                    if (type === 'NoteImg') {
+                        return info.title && info.title.toLowerCase().includes(lowerSearch)
+                    }
+    
+                    if (type === 'NoteTodos') {
+                        return info.label && info.label.toLowerCase().includes(lowerSearch)
+                    }
+    
+                    return false
+                })
+            }
+    
             const prevNotesStr = JSON.stringify(notes)
-            const newNotesStr = JSON.stringify(fetchedNotes)
+            const newNotesStr = JSON.stringify(filteredNotes)
     
             if (prevNotesStr !== newNotesStr) {
-                setNotes(fetchedNotes)
-            }})
+                setNotes(filteredNotes)
+            }
+        })
     }
     
+
 
     function onRemoveNote(noteId) {
 
@@ -42,7 +72,6 @@ export function NoteIndex() {
             })
             .catch(err => {
                 console.log('Problem removing note:', err)
-                showErrorMsg('Problem removing note!')
             })
     }
 
@@ -60,10 +89,6 @@ export function NoteIndex() {
         })
     }
 
-
-
-    // console.log("notes: ", notes)
-
     if (!notes || isLoading) {
         return (
             <div className="loading-spinner">
@@ -74,8 +99,15 @@ export function NoteIndex() {
 
     return (
         < div className="note-container">
-            <NoteHeader />
-            <AddNote notes={notes} setNotes={setNotes} setIsLoading={setIsLoading} />
+            <NoteHeader 
+            filterByType={filterByType} 
+            onSetFilterType={setFilterByType} 
+            searchTerm={searchTerm}
+            onSetSearchTerm={setSearchTerm}/>
+            <AddNote 
+            notes={notes} 
+            setNotes={setNotes} 
+            setIsLoading={setIsLoading} />
             <NoteList
                 notes={notes}
                 onRemoveNote={onRemoveNote}
