@@ -1,0 +1,17 @@
+@media (width < 700px) {
+    .icons-nav-container {
+        flex-direction: column;
+        margin-top: 150px !important;
+        margin-bottom: 150px !important;
+        gap: 100px !important;
+        align-items: center;
+    }
+
+    .note-logo-home {
+        width: 105px !important;
+    }
+    
+    .mail-logo-home {
+        width: 170px !important;
+    }
+}

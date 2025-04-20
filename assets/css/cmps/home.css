@@ -23,13 +23,14 @@
  }
 
 .icons-nav-container {
-    display: grid;
-    grid-template-columns: minmax(40 1fr) minmax(720 auto) minmax(40 1fr);
+   
+    display: flex;
     width: 100vw;
-    height: 80vh;
+    
     justify-content: center;
     align-content: center;
     gap: 200px;
+    margin-top:300px;
 }
 
 .icons-nav-container>* {
