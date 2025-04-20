@@ -148,6 +148,7 @@ export function MailIndex() {
                     unreadMails={gUnreadMails.length}
                     onSetType={onSetType}
                     onSetCompose={onSetCompose}
+                    mailType={mailType}
                 />
                 <MailFilter
                     onSetFilterBy={onSetFilterBy}

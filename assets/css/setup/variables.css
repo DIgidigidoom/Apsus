@@ -2,13 +2,14 @@
     --main-bg-color: lightblue;
     --mail-bg-color: rgb(248, 250, 253);
     --read-bg-color: rgb(242, 246, 252);
-
-
+    --label-hl-color: rgb(211, 227, 253);
+    
     --sepertor-color: rgb(238, 240, 242);
     --compose-btn-bg: rgb(194, 231, 255);
 
+
     --light-txt-color: #5F6368;
-    --regular-txt-color: rgb(72,73,73);
+    --regular-txt-color: rgb(72, 73, 73);
     --dark-txt-color: rgb(32, 33, 36);
     --hover-side-nav-color: #dde0e4;
     --mail-srch-bg: rgb(233, 238, 246);

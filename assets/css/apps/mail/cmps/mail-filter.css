@@ -26,6 +26,11 @@
 
 .mail-search-bar:focus-within {
   box-shadow: 0 1px 6px rgba(60, 64, 67, 0.3);
+  background-color: white;
+}
+.mail-search-bar:focus-within .search-input
+,.mail-search-bar:focus-within .search-icon {
+  background-color: white;
 }
 
 .search-icon {
