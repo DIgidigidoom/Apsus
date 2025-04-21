@@ -27,6 +27,41 @@ A minimalist Gmail-inspired email client built with React, featuring nested rout
 - **Component-Based Architecture:** Modular React components for easy maintenance and scaling.
 - **Mock Data Support:** Easily switch between mock data and real API integrations.
 
+# 🗒️ Google Keep Clone (React)
+
+A fully functional Google Keep-style note-taking app, crafted with attention to usability and smooth user experience.
+
+## ✨ Features
+
+- **Add Notes:** Create notes of various types — text, image, or todo list — using a single intuitive input field.
+- **Note Types:** 
+  - **Text notes** – just write and hit Enter.
+  - **Image notes** – add an image via URL.
+  - **Todo notes** – manage task lists with checkboxes and titles.
+- **Edit Notes:** Open a modal to edit any note, with a custom editor that matches the note type.
+- **Search & Filter:** Search notes by title or content using a live search input.
+- **Color Picker:** Change the background color of each note from a customizable palette.
+- **Pin Notes:** Pin important notes to keep them at the top of the grid.
+- **Duplicate Notes:** Instantly duplicate any note with a single click.
+- **Responsive Layout:** Notes are displayed in a clean grid layout inspired by Google Keep.
+- **Dynamic UI:** Real-time updates using React’s state and effect hooks.
+- **Local Storage:** Notes are stored in localStorage and persist across sessions.
+
+## 🧠 Tech Highlights
+
+- React (useState, useEffect, useRef)
+- Modular component structure (NotePreview, NoteModal, AddNote, NoteTodos, etc.)
+- Dynamic rendering based on note type
+- Styled with custom CSS (Keep-style UI)
+- Query Params integration for better UX
+
+## 🎨 Example Note Types
+
+- `NoteTxt`: "Meeting with team at 10am"
+- `NoteImg`: image URL with caption
+- `NoteTodos`: todo list with optional completed tasks
+
+
 ## 🛠️ Tech Stack
 
 - **React**
