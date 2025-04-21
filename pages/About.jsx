@@ -19,8 +19,9 @@ export function About() {
                     <img className="about-img" src="assets/img/Tom-photo.jpg" alt="Tom's photo" />
                     <h3>Tom Shahar</h3>
                     <p>
-                        I'm Tom, currently diving deep into frontend and backend technologies.
+                        I'm Tom, A mechanical engineer currently diving deep into frontend and backend technologies.
                         I enjoy turning ideas into functional, sleek interfaces and working on cool projects with great teammates.
+                        My contribution to this project was the Mail App.
                     </p>
                 </div>
 

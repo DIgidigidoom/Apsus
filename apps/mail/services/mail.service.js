@@ -1,8 +1,8 @@
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
-const RECIEVED_MAILS_KEY = 'recivedMailsDB'
-// const SENT_MAILS_KEY = 'sentMailsDB'
+const RECIEVED_MAILS_KEY = 'mailsDB'
+
 _createMails()
 
 export const mailService = {
@@ -13,6 +13,7 @@ export const mailService = {
     getEmptyMail,
     getDefaultFilter
 }
+
 function query(filterBy = {}) {
     return storageService.query(RECIEVED_MAILS_KEY)
         .then(mails => {
@@ -29,6 +30,7 @@ function get(mailId) {
     if (mailId) return storageService.get(RECIEVED_MAILS_KEY, mailId)
 
 }
+
 function getDefaultFilter() {
     return { txt: '' }
 }
@@ -49,7 +51,6 @@ function getEmptyMail() {
         img: ''
     }
 }
-
 
 function remove(mailId) {
     return storageService.remove(RECIEVED_MAILS_KEY, mailId)
@@ -75,14 +76,13 @@ function _createMail(subject, body, sentAt, removedAt, from, to, type,) {
         from,
         to,
         type,
-        isStarred: false,
+        isStarred:false,
         img: `https://robohash.org/${from}.png`
 
     }
 
     return mail
 }
-
 
 function _createMails() {
     let mails = utilService.loadFromStorage(RECIEVED_MAILS_KEY) || []
@@ -145,8 +145,6 @@ function _createMails() {
             _createMail("Help Center Updates", "Lets finalize the agenda before the meeting tomorrow. I drafted a rough outline that includes all our talking points — feel free to shuffle the order if needed.", 1738496580581, null, "taylor@corp.net", "Tom-shahar@gmail.com", "trash"),
 
         ]
-
         utilService.saveToStorage(RECIEVED_MAILS_KEY, mails)
     }
-
 }

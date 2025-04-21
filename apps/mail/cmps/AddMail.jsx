@@ -1,14 +1,11 @@
 import { mailService } from "../services/mail.service.js"
 
 const { useState, useEffect } = React
-const { useParams, Link, useNavigate } = ReactRouterDOM
+
 
 export function AddMail({ onSetCompose, mailToEdit }) {
-    // const { mailId } = useParams()
     const [mailToAdd, setMailToAdd] = useState(mailService.getEmptyMail())
     console.log("mailToAdd: ", mailToAdd)
-    const navigate = useNavigate()
-
 
     useEffect(() => {
         if (!mailToEdit) {
@@ -19,7 +16,6 @@ export function AddMail({ onSetCompose, mailToEdit }) {
                 .catch(err => console.error('Error loading mail:', err))
         }
     }, [mailToEdit])
-
 
     function handleChange({ target }) {
         const field = target.name
@@ -36,6 +32,7 @@ export function AddMail({ onSetCompose, mailToEdit }) {
         }
         setMailToAdd(prevBook => ({ ...prevBook, [field]: value }))
     }
+
     function onAddMail(ev) {
         ev.preventDefault()
         const newMail = {
@@ -71,9 +68,7 @@ export function AddMail({ onSetCompose, mailToEdit }) {
 
 
     }
-    function onBack() {
-        navigate('/mail')
-    }
+
     return (
         <section className="add-mail-container">
             <section className="add-mail-header">

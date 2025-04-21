@@ -1,8 +1,9 @@
 const { useState, useEffect } = React
-const { Link } = ReactRouterDOM
+
 
 export function MailFilter({ filterBy, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
     }, [filterByToEdit])
@@ -22,7 +23,6 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
         }
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
-
 
     function onSubmitFilter(ev) {
         ev.preventDefault()

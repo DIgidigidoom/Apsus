@@ -1,16 +1,13 @@
 import { mailService } from "../services/mail.service.js"
 
-const { useParams, useNavigate, Link } = ReactRouterDOM
+const { useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
-
 
 
 export function MailDetails() {
     const params = useParams()
     const [mail, setMail] = useState(null)
     const navigate = useNavigate()
-
-
 
     useEffect(() => {
         loadMail()
@@ -21,6 +18,7 @@ export function MailDetails() {
             .then(mail => setMail(mail))
             .catch(err => console.log('err:', err))
     }
+
     function onRemoveMail(mailId) {
         // setIsLoading(true)
         mailService.remove(mailId)
@@ -61,12 +59,12 @@ export function MailDetails() {
         const year = String(sent.getFullYear()).slice(-2)
         return `${day}/${month}/${year}`
     }
+
     function onBack() {
         navigate('/mail')
     }
+
     if (!mail) return <div>Loading...</div>
-
-
     return (
         <React.Fragment>
 
@@ -90,7 +88,6 @@ export function MailDetails() {
                     <p className="mail-sent-at">{onFormatDate()}</p>
                     <button className="fa-regular fa-star"></button>
                 </section>
-
             </div>
         </React.Fragment>
     )

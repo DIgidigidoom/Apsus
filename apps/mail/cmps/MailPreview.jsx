@@ -1,7 +1,6 @@
 export function MailPreview({ mail, onFormatDate }) {
 
 
-
     function onFormatDate() {
         const sent = new Date(mail.sentAt)
         const now = new Date()

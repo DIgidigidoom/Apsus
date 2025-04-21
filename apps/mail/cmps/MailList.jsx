@@ -1,10 +1,10 @@
 import { MailPreview } from "./MailPreview.jsx";
 import { mailService } from "./../services/mail.service.js";
-const { Link, useNavigate } = ReactRouterDOM
-const { useState, useEffect } = React
+
+const { Link,} = ReactRouterDOM
 
 export function MailList({ mails, onRemoveMail, onToggleIsRead, onToggleIsStarred, onSetCompose, onSetSortBy, LoadMails,setTriggerReload }) {
-    const navigate = useNavigate()
+    
 
     function onSetIsRead(id) {
         mailService.get(id)

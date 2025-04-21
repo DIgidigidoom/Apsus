@@ -7,10 +7,10 @@ import { mailService } from "../services/mail.service.js"
 import { MailDetails } from "./MailDetails.jsx"
 
 const { useState, useEffect } = React
-const { useSearchParams, Outlet, useParams } = ReactRouterDOM
+const { useParams } = ReactRouterDOM
 
 var gUnreadMails = 0
-//change to state
+
 
 export function MailIndex() {
     const [isComposing, setIsComposing] = useState(false)
@@ -22,8 +22,6 @@ export function MailIndex() {
     const [mailType, setMailType] = useState('inbox')
     const [mailToEdit, setMailToEdit] = useState(null)
     const params = useParams()
-
-
 
 
     useEffect(() => {
@@ -52,7 +50,7 @@ export function MailIndex() {
                     }
                     const Mails = allMails.filter(mail => mail.type === mailType)
                     setMails(Mails)
-                    
+
 
                 })
                 .catch(err => console.log('err:', err))
@@ -67,7 +65,7 @@ export function MailIndex() {
                     }
                     const starredMails = allMails.filter(mail => mail.isStarred)
                     setMails(starredMails)
-                    
+
 
                 })
                 .catch(err => console.log('err:', err))
@@ -141,21 +139,19 @@ export function MailIndex() {
     function onSetType(type) {
         setMailType(type)
     }
+
     function onSetCompose(value, mailToEdit) {
         setMailToEdit(mailToEdit)
         setIsComposing(value)
     }
+
     function onSetSortBy(sortBy) {
         setsortBy(sortBy)
     }
 
 
 
-
-
-
     if (!mails) return <div className="loader">Loading...</div>
-    const loadingClass = isLoading ? 'loading' : ''
     return (
         <React.Fragment>
             <section className="mail-index">
@@ -178,8 +174,8 @@ export function MailIndex() {
                             onToggleIsStarred={onToggleIsStarred}
                             onSetCompose={onSetCompose}
                             onSetSortBy={onSetSortBy}
-                            LoadMails = {LoadMails}
-                            setTriggerReload= {setTriggerReload}
+                            LoadMails={LoadMails}
+                            setTriggerReload={setTriggerReload}
                         />}
                 </div>
                 {isComposing && (
@@ -188,10 +184,8 @@ export function MailIndex() {
                         mailToEdit={mailToEdit}
                     />
                 )}
-
             </section>
         </React.Fragment>
-
     )
 }
 
