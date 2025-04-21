@@ -73,18 +73,11 @@ export function NoteList({ notes, setNotes, onRemoveNote, onUpdateNote }) {
                     <ColorPicker
                         note={note}
                         setIsOpen={setIsOpen}
-                    // onChangeColor={(note, color) => {
-                    //     const updatedNote = {
-                    //         ...note,
-                    //         style: { ...note.style, backgroundColor: color }
-                    //     }
-                    //     onUpdateNote(updatedNote)
-                    //     setIsOpen = { setIsOpen }
-                    // }}
                     />
 
                     {isOpen && (
-                        <div className="color-picker">
+                        <div className="color-picker"
+                        onClick={(ev) => ev.stopPropagation()}>
                             {colors.map(color => (
                                 <div
                                     key={color}
