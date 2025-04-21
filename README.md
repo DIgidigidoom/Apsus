@@ -14,7 +14,7 @@ AppSus brings together two core features:
 - **Keep** – A notes feature modeled after Google Keep, perfect for jotting down ideas, todos, and reminders.
 
 
-# 📬 Gmail Clone (React)
+# 📬 Gmail Clone (by Tom Shahar)
 
 A minimalist Gmail-inspired email client built with React, featuring nested routing, modern UI, and dynamic state management using asynchronous storage services.
 
